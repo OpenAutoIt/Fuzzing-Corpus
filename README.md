@@ -1,0 +1,1 @@
+# OpenAutoIt fuzzing corpus
