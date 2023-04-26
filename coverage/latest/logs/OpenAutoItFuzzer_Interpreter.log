@@ -1,77 +1,30 @@
 INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 3910183693
+INFO: Seed: 4286714517
 INFO: Loaded 1 modules   (63 inline 8-bit counters): 63 [0x687c28, 0x687c67), 
 INFO: Loaded 1 PC tables (63 PCs): 63 [0x5f7318,0x5f7708), 
-MERGE-OUTER: 4806 files, 0 in the initial corpus, 0 processed earlier
+MERGE-OUTER: 3795 files, 0 in the initial corpus, 0 processed earlier
 MERGE-OUTER: attempt 1
 INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 3910215629
+INFO: Seed: 4286736435
 INFO: Loaded 1 modules   (63 inline 8-bit counters): 63 [0x687c28, 0x687c67), 
 INFO: Loaded 1 PC tables (63 PCs): 63 [0x5f7318,0x5f7708), 
 INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
 MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge293.txt'
-MERGE-INNER: 4806 total files; 0 processed earlier; will process 4806 files now
+MERGE-INNER: 3795 total files; 0 processed earlier; will process 3795 files now
 #1	pulse  cov: 20 ft: 21 exec/s: 0 rss: 29Mb
-#2	pulse  cov: 21 ft: 22 exec/s: 0 rss: 29Mb
+#2	pulse  cov: 20 ft: 21 exec/s: 0 rss: 29Mb
 #4	pulse  cov: 21 ft: 22 exec/s: 0 rss: 29Mb
 #8	pulse  cov: 21 ft: 22 exec/s: 0 rss: 29Mb
 #16	pulse  cov: 21 ft: 22 exec/s: 0 rss: 29Mb
 #32	pulse  cov: 24 ft: 26 exec/s: 0 rss: 29Mb
-#64	pulse  cov: 25 ft: 30 exec/s: 0 rss: 29Mb
-#128	pulse  cov: 32 ft: 38 exec/s: 0 rss: 29Mb
-#256	pulse  cov: 33 ft: 45 exec/s: 0 rss: 29Mb
+#64	pulse  cov: 24 ft: 26 exec/s: 0 rss: 29Mb
+#128	pulse  cov: 33 ft: 40 exec/s: 0 rss: 29Mb
+#256	pulse  cov: 33 ft: 44 exec/s: 0 rss: 29Mb
 #512	pulse  cov: 38 ft: 65 exec/s: 0 rss: 29Mb
-#1024	pulse  cov: 41 ft: 108 exec/s: 0 rss: 29Mb
-UndefinedBehaviorSanitizer:DEADLYSIGNAL
-==296==ERROR: UndefinedBehaviorSanitizer: FPE on unknown address 0x0000004c73db (pc 0x0000004c73db bp 0x7fff651390a0 sp 0x7fff651390a0 T296)
-    #0 0x4c73db in OpenAutoIt::UnsafeDivide(phi::integer<long>, phi::integer<long>) /src/openautoit/runtime/src/UnsafeOperations.cpp:35:29
-    #1 0x4c4faa in OpenAutoIt::Interpreter::EvaluateBinaryDivideExpression(OpenAutoIt::Variant const&, OpenAutoIt::Variant const&) /src/openautoit/runtime/src/Interpreter.cpp:507:33
-    #2 0x4c432a in OpenAutoIt::Interpreter::EvaluateBinaryExpression(OpenAutoIt::Variant const&, OpenAutoIt::Variant const&, OpenAutoIt::TokenKind) /src/openautoit/runtime/src/Interpreter.cpp:458:24
-    #3 0x4c3c8c in OpenAutoIt::Interpreter::InterpretExpression(phi::not_null_observer_ptr<OpenAutoIt::ASTExpression>) /src/openautoit/runtime/src/Interpreter.cpp:220:24
-    #4 0x4c4462 in OpenAutoIt::Interpreter::InterpretExpressions(std::__1::vector<phi::not_null_scope_ptr<OpenAutoIt::ASTExpression>, std::__1::allocator<phi::not_null_scope_ptr<OpenAutoIt::ASTExpression> > >&) /src/openautoit/runtime/src/Interpreter.cpp:307:30
-    #5 0x4c3df4 in OpenAutoIt::Interpreter::InterpretExpression(phi::not_null_observer_ptr<OpenAutoIt::ASTExpression>) /src/openautoit/runtime/src/Interpreter.cpp:236:25
-    #6 0x4c328b in OpenAutoIt::Interpreter::InterpretStatement(phi::not_null_observer_ptr<OpenAutoIt::ASTStatement>) /src/openautoit/runtime/src/Interpreter.cpp:103:17
-    #7 0x4c2de7 in OpenAutoIt::Interpreter::Step() /src/openautoit/runtime/src/Interpreter.cpp:64:42
-    #8 0x4c1653 in LLVMFuzzerTestOneInput /src/openautoit/fuzzing/src/Interpreter.fuzz.cpp:52:21
-    #9 0x427293 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #10 0x430084 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #11 0x418129 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #12 0x4417d2 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #13 0x7f466453e082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #14 0x408bbd in _start (build-out/OpenAutoItFuzzer_Interpreter+0x408bbd)
-
-DEDUP_TOKEN: OpenAutoIt::UnsafeDivide(phi::integer<long>, phi::integer<long>)--OpenAutoIt::Interpreter::EvaluateBinaryDivideExpression(OpenAutoIt::Variant const&, OpenAutoIt::Variant const&)--OpenAutoIt::Interpreter::EvaluateBinaryExpression(OpenAutoIt::Variant const&, OpenAutoIt::Variant const&, OpenAutoIt::TokenKind)
-UndefinedBehaviorSanitizer can not provide additional info.
-SUMMARY: UndefinedBehaviorSanitizer: FPE /src/openautoit/runtime/src/UnsafeOperations.cpp:35:29 in OpenAutoIt::UnsafeDivide(phi::integer<long>, phi::integer<long>)
-==296==ABORTING
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-0x41,0x62,0x73,0x28,0x41,0x62,0x73,0x28,0x6d,0x28,0x41,0x62,0x73,0x28,0x41,0x28,0x29,0x29,0x29,0x29,0x2f,0x41,0x62,0x73,0x28,0x24,0x52,0x29,0x29,
-Abs(Abs(m(Abs(A())))/Abs($R))
-artifact_prefix='./'; Test unit written to ./crash-a59baa72a80f934b030136b8c04b60c6a27cbabf
-Base64: QWJzKEFicyhtKEFicyhBKCkpKSkvQWJzKCRSKSk=
-MERGE-OUTER: attempt 2
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 3910962162
-INFO: Loaded 1 modules   (63 inline 8-bit counters): 63 [0x687c28, 0x687c67), 
-INFO: Loaded 1 PC tables (63 PCs): 63 [0x5f7318,0x5f7708), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge293.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/OpenAutoItFuzzer_Interpreter/a59baa72a80f934b030136b8c04b60c6a27cbabf' caused a failure at the previous merge step
-MERGE-INNER: 4806 total files; 1501 processed earlier; will process 3305 files now
-#1	pulse  cov: 23 ft: 24 exec/s: 0 rss: 29Mb
-#2	pulse  cov: 26 ft: 30 exec/s: 0 rss: 29Mb
-#4	pulse  cov: 35 ft: 50 exec/s: 0 rss: 29Mb
-#8	pulse  cov: 35 ft: 55 exec/s: 0 rss: 29Mb
-#16	pulse  cov: 42 ft: 79 exec/s: 0 rss: 29Mb
-#32	pulse  cov: 44 ft: 112 exec/s: 0 rss: 29Mb
-#64	pulse  cov: 44 ft: 133 exec/s: 0 rss: 30Mb
-#128	pulse  cov: 45 ft: 142 exec/s: 0 rss: 30Mb
-#256	pulse  cov: 46 ft: 153 exec/s: 0 rss: 30Mb
-#512	pulse  cov: 46 ft: 181 exec/s: 0 rss: 30Mb
-#1024	pulse  cov: 46 ft: 211 exec/s: 0 rss: 30Mb
-#2048	pulse  cov: 46 ft: 233 exec/s: 0 rss: 30Mb
-#3305	DONE   cov: 46 ft: 249 exec/s: 0 rss: 31Mb
-MERGE-OUTER: successful in 2 attempt(s)
-MERGE-OUTER: the control file has 649454 bytes
-MERGE-OUTER: consumed 0Mb (30Mb rss) to parse the control file
-MERGE-OUTER: 115 new files with 249 new features added; 46 new coverage edges
+#1024	pulse  cov: 41 ft: 113 exec/s: 0 rss: 29Mb
+#2048	pulse  cov: 46 ft: 196 exec/s: 0 rss: 30Mb
+#3795	DONE   cov: 46 ft: 254 exec/s: 0 rss: 30Mb
+MERGE-OUTER: successful in 1 attempt(s)
+MERGE-OUTER: the control file has 511231 bytes
+MERGE-OUTER: consumed 0Mb (29Mb rss) to parse the control file
+MERGE-OUTER: 122 new files with 254 new features added; 46 new coverage edges
