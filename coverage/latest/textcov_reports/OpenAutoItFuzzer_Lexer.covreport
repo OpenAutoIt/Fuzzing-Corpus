@@ -22,7 +22,7 @@ _ZN3fmt3v1017basic_string_viewIcEC2EPKc:
 _ZN3fmt3v106detail10locale_refC2Ev:
  1536|  2.23k|  constexpr FMT_INLINE locale_ref() : locale_(nullptr) {}
 _ZNK3fmt3v1019basic_format_stringIcJEEcvNS0_17basic_string_viewIcEEEv:
- 2750|  2.23k|  FMT_INLINE operator basic_string_view<Char>() const { return str_; }
+ 2759|  2.23k|  FMT_INLINE operator basic_string_view<Char>() const { return str_; }
 _ZN3fmt3v1016make_format_argsINS0_20basic_format_contextINS0_8appenderEcEEJEEENS0_16format_arg_storeIT_JDpNSt3__19remove_cvINS7_16remove_referenceIT0_E4typeEE4typeEEEEDpRSA_:
  1827|  2.23k|    -> format_arg_store<Context, remove_cvref_t<T>...> {
  1828|  2.23k|  return {args...};
@@ -93,76 +93,76 @@ _ZN3fmt3v1020basic_format_contextINS0_8appenderEcEC2ES2_NS0_17basic_format_argsI
 _ZN3fmt3v1020basic_format_contextINS0_8appenderEcE3outEv:
  1748|  2.23k|  FMT_CONSTEXPR auto out() -> iterator { return out_; }
 _ZN3fmt3v106detail19parse_format_stringILb0EcZNS1_10vformat_toIcEEvRNS1_6bufferIT_EENS0_17basic_string_viewIS5_EENS1_12vformat_argsIS5_E4typeENS1_10locale_refEE14format_handlerEEvNS8_IT0_EEOT1_:
- 2481|  2.23k|    basic_string_view<Char> format_str, Handler&& handler) {
- 2482|  2.23k|  auto begin = format_str.data();
- 2483|  2.23k|  auto end = begin + format_str.size();
- 2484|  2.23k|  if (end - begin < 32) {
+ 2490|  2.23k|    basic_string_view<Char> format_str, Handler&& handler) {
+ 2491|  2.23k|  auto begin = format_str.data();
+ 2492|  2.23k|  auto end = begin + format_str.size();
+ 2493|  2.23k|  if (end - begin < 32) {
   ------------------
-  |  Branch (2484:7): [True: 2.23k, False: 0]
+  |  Branch (2493:7): [True: 2.23k, False: 0]
   ------------------
- 2485|       |    // Use a simple loop instead of memchr for small strings.
- 2486|  2.23k|    const Char* p = begin;
- 2487|  51.4k|    while (p != end) {
+ 2494|       |    // Use a simple loop instead of memchr for small strings.
+ 2495|  2.23k|    const Char* p = begin;
+ 2496|  51.4k|    while (p != end) {
   ------------------
-  |  Branch (2487:12): [True: 49.2k, False: 2.23k]
+  |  Branch (2496:12): [True: 49.2k, False: 2.23k]
   ------------------
- 2488|  49.2k|      auto c = *p++;
- 2489|  49.2k|      if (c == '{') {
+ 2497|  49.2k|      auto c = *p++;
+ 2498|  49.2k|      if (c == '{') {
   ------------------
-  |  Branch (2489:11): [True: 0, False: 49.2k]
+  |  Branch (2498:11): [True: 0, False: 49.2k]
   ------------------
- 2490|      0|        handler.on_text(begin, p - 1);
- 2491|      0|        begin = p = parse_replacement_field(p - 1, end, handler);
- 2492|  49.2k|      } else if (c == '}') {
+ 2499|      0|        handler.on_text(begin, p - 1);
+ 2500|      0|        begin = p = parse_replacement_field(p - 1, end, handler);
+ 2501|  49.2k|      } else if (c == '}') {
   ------------------
-  |  Branch (2492:18): [True: 0, False: 49.2k]
+  |  Branch (2501:18): [True: 0, False: 49.2k]
   ------------------
- 2493|      0|        if (p == end || *p != '}')
+ 2502|      0|        if (p == end || *p != '}')
   ------------------
-  |  Branch (2493:13): [True: 0, False: 0]
-  |  Branch (2493:25): [True: 0, False: 0]
+  |  Branch (2502:13): [True: 0, False: 0]
+  |  Branch (2502:25): [True: 0, False: 0]
   ------------------
- 2494|      0|          return handler.on_error("unmatched '}' in format string");
- 2495|      0|        handler.on_text(begin, p);
- 2496|      0|        begin = ++p;
- 2497|      0|      }
- 2498|  49.2k|    }
- 2499|  2.23k|    handler.on_text(begin, end);
- 2500|  2.23k|    return;
- 2501|  2.23k|  }
- 2502|      0|  struct writer {
- 2503|      0|    FMT_CONSTEXPR void operator()(const Char* from, const Char* to) {
- 2504|      0|      if (from == to) return;
- 2505|      0|      for (;;) {
- 2506|      0|        const Char* p = nullptr;
- 2507|      0|        if (!find<IS_CONSTEXPR>(from, to, Char('}'), p))
- 2508|      0|          return handler_.on_text(from, to);
- 2509|      0|        ++p;
- 2510|      0|        if (p == to || *p != '}')
- 2511|      0|          return handler_.on_error("unmatched '}' in format string");
- 2512|      0|        handler_.on_text(from, p);
- 2513|      0|        from = p + 1;
- 2514|      0|      }
- 2515|      0|    }
- 2516|      0|    Handler& handler_;
- 2517|      0|  } write = {handler};
- 2518|      0|  while (begin != end) {
+ 2503|      0|          return handler.on_error("unmatched '}' in format string");
+ 2504|      0|        handler.on_text(begin, p);
+ 2505|      0|        begin = ++p;
+ 2506|      0|      }
+ 2507|  49.2k|    }
+ 2508|  2.23k|    handler.on_text(begin, end);
+ 2509|  2.23k|    return;
+ 2510|  2.23k|  }
+ 2511|      0|  struct writer {
+ 2512|      0|    FMT_CONSTEXPR void operator()(const Char* from, const Char* to) {
+ 2513|      0|      if (from == to) return;
+ 2514|      0|      for (;;) {
+ 2515|      0|        const Char* p = nullptr;
+ 2516|      0|        if (!find<IS_CONSTEXPR>(from, to, Char('}'), p))
+ 2517|      0|          return handler_.on_text(from, to);
+ 2518|      0|        ++p;
+ 2519|      0|        if (p == to || *p != '}')
+ 2520|      0|          return handler_.on_error("unmatched '}' in format string");
+ 2521|      0|        handler_.on_text(from, p);
+ 2522|      0|        from = p + 1;
+ 2523|      0|      }
+ 2524|      0|    }
+ 2525|      0|    Handler& handler_;
+ 2526|      0|  } write = {handler};
+ 2527|      0|  while (begin != end) {
   ------------------
-  |  Branch (2518:10): [True: 0, False: 0]
+  |  Branch (2527:10): [True: 0, False: 0]
   ------------------
- 2519|       |    // Doing two passes with memchr (one for '{' and another for '}') is up to
- 2520|       |    // 2.5x faster than the naive one-pass implementation on big format strings.
- 2521|      0|    const Char* p = begin;
- 2522|      0|    if (*begin != '{' && !find<IS_CONSTEXPR>(begin + 1, end, Char('{'), p))
+ 2528|       |    // Doing two passes with memchr (one for '{' and another for '}') is up to
+ 2529|       |    // 2.5x faster than the naive one-pass implementation on big format strings.
+ 2530|      0|    const Char* p = begin;
+ 2531|      0|    if (*begin != '{' && !find<IS_CONSTEXPR>(begin + 1, end, Char('{'), p))
   ------------------
-  |  Branch (2522:9): [True: 0, False: 0]
-  |  Branch (2522:26): [True: 0, False: 0]
+  |  Branch (2531:9): [True: 0, False: 0]
+  |  Branch (2531:26): [True: 0, False: 0]
   ------------------
- 2523|      0|      return write(begin, end);
- 2524|      0|    write(begin, p);
- 2525|      0|    begin = parse_replacement_field(p, end, handler);
- 2526|      0|  }
- 2527|      0|}
+ 2532|      0|      return write(begin, end);
+ 2533|      0|    write(begin, p);
+ 2534|      0|    begin = parse_replacement_field(p, end, handler);
+ 2535|      0|  }
+ 2536|      0|}
 _ZN3fmt3v1020basic_format_contextINS0_8appenderEcE10advance_toES2_:
  1751|  2.23k|  void advance_to(iterator it) {
  1752|  2.23k|    if (!detail::is_back_insert_iterator<iterator>()) out_ = it;
@@ -183,155 +183,155 @@ _ZN3fmt3v107vformatENS0_17basic_string_viewIcEENS0_17basic_format_argsINS0_20bas
  1426|  2.23k|}
 
 _ZN3fmt3v106detail6bufferIcE6appendIcEEvPKT_S7_:
-  872|  2.23k|void buffer<T>::append(const U* begin, const U* end) {
-  873|  4.47k|  while (begin != end) {
+  875|  2.23k|void buffer<T>::append(const U* begin, const U* end) {
+  876|  4.47k|  while (begin != end) {
   ------------------
-  |  Branch (873:10): [True: 2.23k, False: 2.23k]
+  |  Branch (876:10): [True: 2.23k, False: 2.23k]
   ------------------
-  874|  2.23k|    auto count = to_unsigned(end - begin);
-  875|  2.23k|    try_reserve(size_ + count);
-  876|  2.23k|    auto free_cap = capacity_ - size_;
-  877|  2.23k|    if (free_cap < count) count = free_cap;
+  877|  2.23k|    auto count = to_unsigned(end - begin);
+  878|  2.23k|    try_reserve(size_ + count);
+  879|  2.23k|    auto free_cap = capacity_ - size_;
+  880|  2.23k|    if (free_cap < count) count = free_cap;
   ------------------
-  |  Branch (877:9): [True: 0, False: 2.23k]
+  |  Branch (880:9): [True: 0, False: 2.23k]
   ------------------
-  878|  2.23k|    std::uninitialized_copy_n(begin, count, ptr_ + size_);
-  879|  2.23k|    size_ += count;
-  880|  2.23k|    begin += count;
-  881|  2.23k|  }
-  882|  2.23k|}
+  881|  2.23k|    std::uninitialized_copy_n(begin, count, ptr_ + size_);
+  882|  2.23k|    size_ += count;
+  883|  2.23k|    begin += count;
+  884|  2.23k|  }
+  885|  2.23k|}
 _ZN3fmt3v106detail10vformat_toIcEEvRNS1_6bufferIT_EENS0_17basic_string_viewIS4_EENS1_12vformat_argsIS4_E4typeENS1_10locale_refE:
- 4361|  2.23k|                typename vformat_args<Char>::type args, locale_ref loc) {
- 4362|  2.23k|  auto out = buffer_appender<Char>(buf);
- 4363|  2.23k|  if (fmt.size() == 2 && equal2(fmt.data(), "{}")) {
+ 4373|  2.23k|                typename vformat_args<Char>::type args, locale_ref loc) {
+ 4374|  2.23k|  auto out = buffer_appender<Char>(buf);
+ 4375|  2.23k|  if (fmt.size() == 2 && equal2(fmt.data(), "{}")) {
   ------------------
-  |  Branch (4363:7): [True: 0, False: 2.23k]
-  |  Branch (4363:26): [True: 0, False: 0]
+  |  Branch (4375:7): [True: 0, False: 2.23k]
+  |  Branch (4375:26): [True: 0, False: 0]
   ------------------
- 4364|      0|    auto arg = args.get(0);
- 4365|      0|    if (!arg) error_handler().on_error("argument not found");
+ 4376|      0|    auto arg = args.get(0);
+ 4377|      0|    if (!arg) error_handler().on_error("argument not found");
   ------------------
-  |  Branch (4365:9): [True: 0, False: 0]
+  |  Branch (4377:9): [True: 0, False: 0]
   ------------------
- 4366|      0|    visit_format_arg(default_arg_formatter<Char>{out, args, loc}, arg);
- 4367|      0|    return;
- 4368|      0|  }
- 4369|       |
- 4370|  2.23k|  struct format_handler : error_handler {
- 4371|  2.23k|    basic_format_parse_context<Char> parse_context;
- 4372|  2.23k|    buffer_context<Char> context;
- 4373|       |
- 4374|  2.23k|    format_handler(buffer_appender<Char> p_out, basic_string_view<Char> str,
- 4375|  2.23k|                   basic_format_args<buffer_context<Char>> p_args,
- 4376|  2.23k|                   locale_ref p_loc)
- 4377|  2.23k|        : parse_context(str), context(p_out, p_args, p_loc) {}
- 4378|       |
- 4379|  2.23k|    void on_text(const Char* begin, const Char* end) {
- 4380|  2.23k|      auto text = basic_string_view<Char>(begin, to_unsigned(end - begin));
- 4381|  2.23k|      context.advance_to(write<Char>(context.out(), text));
- 4382|  2.23k|    }
- 4383|       |
- 4384|  2.23k|    FMT_CONSTEXPR auto on_arg_id() -> int {
- 4385|  2.23k|      return parse_context.next_arg_id();
- 4386|  2.23k|    }
- 4387|  2.23k|    FMT_CONSTEXPR auto on_arg_id(int id) -> int {
- 4388|  2.23k|      return parse_context.check_arg_id(id), id;
- 4389|  2.23k|    }
- 4390|  2.23k|    FMT_CONSTEXPR auto on_arg_id(basic_string_view<Char> id) -> int {
- 4391|  2.23k|      int arg_id = context.arg_id(id);
- 4392|  2.23k|      if (arg_id < 0) on_error("argument not found");
- 4393|  2.23k|      return arg_id;
+ 4378|      0|    visit_format_arg(default_arg_formatter<Char>{out, args, loc}, arg);
+ 4379|      0|    return;
+ 4380|      0|  }
+ 4381|       |
+ 4382|  2.23k|  struct format_handler : error_handler {
+ 4383|  2.23k|    basic_format_parse_context<Char> parse_context;
+ 4384|  2.23k|    buffer_context<Char> context;
+ 4385|       |
+ 4386|  2.23k|    format_handler(buffer_appender<Char> p_out, basic_string_view<Char> str,
+ 4387|  2.23k|                   basic_format_args<buffer_context<Char>> p_args,
+ 4388|  2.23k|                   locale_ref p_loc)
+ 4389|  2.23k|        : parse_context(str), context(p_out, p_args, p_loc) {}
+ 4390|       |
+ 4391|  2.23k|    void on_text(const Char* begin, const Char* end) {
+ 4392|  2.23k|      auto text = basic_string_view<Char>(begin, to_unsigned(end - begin));
+ 4393|  2.23k|      context.advance_to(write<Char>(context.out(), text));
  4394|  2.23k|    }
  4395|       |
- 4396|  2.23k|    FMT_INLINE void on_replacement_field(int id, const Char*) {
- 4397|  2.23k|      auto arg = get_arg(context, id);
- 4398|  2.23k|      context.advance_to(visit_format_arg(
- 4399|  2.23k|          default_arg_formatter<Char>{context.out(), context.args(),
- 4400|  2.23k|                                      context.locale()},
- 4401|  2.23k|          arg));
- 4402|  2.23k|    }
- 4403|       |
- 4404|  2.23k|    auto on_format_specs(int id, const Char* begin, const Char* end)
- 4405|  2.23k|        -> const Char* {
- 4406|  2.23k|      auto arg = get_arg(context, id);
- 4407|  2.23k|      if (arg.type() == type::custom_type) {
- 4408|  2.23k|        parse_context.advance_to(begin);
- 4409|  2.23k|        visit_format_arg(custom_formatter<Char>{parse_context, context}, arg);
- 4410|  2.23k|        return parse_context.begin();
- 4411|  2.23k|      }
- 4412|  2.23k|      auto specs = detail::dynamic_format_specs<Char>();
- 4413|  2.23k|      begin = parse_format_specs(begin, end, specs, parse_context, arg.type());
- 4414|  2.23k|      detail::handle_dynamic_spec<detail::width_checker>(
- 4415|  2.23k|          specs.width, specs.width_ref, context);
- 4416|  2.23k|      detail::handle_dynamic_spec<detail::precision_checker>(
- 4417|  2.23k|          specs.precision, specs.precision_ref, context);
- 4418|  2.23k|      if (begin == end || *begin != '}')
- 4419|  2.23k|        on_error("missing '}' in format string");
- 4420|  2.23k|      auto f = arg_formatter<Char>{context.out(), specs, context.locale()};
- 4421|  2.23k|      context.advance_to(visit_format_arg(f, arg));
- 4422|  2.23k|      return begin;
- 4423|  2.23k|    }
- 4424|  2.23k|  };
- 4425|  2.23k|  detail::parse_format_string<false>(fmt, format_handler(out, fmt, args, loc));
- 4426|  2.23k|}
+ 4396|  2.23k|    FMT_CONSTEXPR auto on_arg_id() -> int {
+ 4397|  2.23k|      return parse_context.next_arg_id();
+ 4398|  2.23k|    }
+ 4399|  2.23k|    FMT_CONSTEXPR auto on_arg_id(int id) -> int {
+ 4400|  2.23k|      return parse_context.check_arg_id(id), id;
+ 4401|  2.23k|    }
+ 4402|  2.23k|    FMT_CONSTEXPR auto on_arg_id(basic_string_view<Char> id) -> int {
+ 4403|  2.23k|      int arg_id = context.arg_id(id);
+ 4404|  2.23k|      if (arg_id < 0) on_error("argument not found");
+ 4405|  2.23k|      return arg_id;
+ 4406|  2.23k|    }
+ 4407|       |
+ 4408|  2.23k|    FMT_INLINE void on_replacement_field(int id, const Char*) {
+ 4409|  2.23k|      auto arg = get_arg(context, id);
+ 4410|  2.23k|      context.advance_to(visit_format_arg(
+ 4411|  2.23k|          default_arg_formatter<Char>{context.out(), context.args(),
+ 4412|  2.23k|                                      context.locale()},
+ 4413|  2.23k|          arg));
+ 4414|  2.23k|    }
+ 4415|       |
+ 4416|  2.23k|    auto on_format_specs(int id, const Char* begin, const Char* end)
+ 4417|  2.23k|        -> const Char* {
+ 4418|  2.23k|      auto arg = get_arg(context, id);
+ 4419|  2.23k|      if (arg.type() == type::custom_type) {
+ 4420|  2.23k|        parse_context.advance_to(begin);
+ 4421|  2.23k|        visit_format_arg(custom_formatter<Char>{parse_context, context}, arg);
+ 4422|  2.23k|        return parse_context.begin();
+ 4423|  2.23k|      }
+ 4424|  2.23k|      auto specs = detail::dynamic_format_specs<Char>();
+ 4425|  2.23k|      begin = parse_format_specs(begin, end, specs, parse_context, arg.type());
+ 4426|  2.23k|      detail::handle_dynamic_spec<detail::width_checker>(
+ 4427|  2.23k|          specs.width, specs.width_ref, context);
+ 4428|  2.23k|      detail::handle_dynamic_spec<detail::precision_checker>(
+ 4429|  2.23k|          specs.precision, specs.precision_ref, context);
+ 4430|  2.23k|      if (begin == end || *begin != '}')
+ 4431|  2.23k|        on_error("missing '}' in format string");
+ 4432|  2.23k|      auto f = arg_formatter<Char>{context.out(), specs, context.locale()};
+ 4433|  2.23k|      context.advance_to(visit_format_arg(f, arg));
+ 4434|  2.23k|      return begin;
+ 4435|  2.23k|    }
+ 4436|  2.23k|  };
+ 4437|  2.23k|  detail::parse_format_string<false>(fmt, format_handler(out, fmt, args, loc));
+ 4438|  2.23k|}
 _ZN3fmt3v1019basic_memory_bufferIcLm500ENSt3__19allocatorIcEEEC2ERKS4_:
-  962|  2.23k|      : alloc_(alloc) {
-  963|  2.23k|    this->set(store_, SIZE);
-  964|  2.23k|    if (detail::is_constant_evaluated()) detail::fill_n(store_, SIZE, T());
+  965|  2.23k|      : alloc_(alloc) {
+  966|  2.23k|    this->set(store_, SIZE);
+  967|  2.23k|    if (detail::is_constant_evaluated()) detail::fill_n(store_, SIZE, T());
   ------------------
-  |  Branch (964:9): [Folded - Ignored]
+  |  Branch (967:9): [Folded - Ignored]
   ------------------
-  965|  2.23k|  }
+  968|  2.23k|  }
 _ZN3fmt3v106detail6assumeEb:
-  541|  2.23k|FMT_INLINE void assume(bool condition) {
-  542|  2.23k|  (void)condition;
-  543|  2.23k|#if FMT_HAS_BUILTIN(__builtin_assume) && !FMT_ICC_VERSION
-  544|  2.23k|  __builtin_assume(condition);
-  545|       |#elif FMT_GCC_VERSION
-  546|       |  if (!condition) __builtin_unreachable();
-  547|       |#endif
-  548|  2.23k|}
+  544|  2.23k|FMT_INLINE void assume(bool condition) {
+  545|  2.23k|  (void)condition;
+  546|  2.23k|#if FMT_HAS_BUILTIN(__builtin_assume) && !FMT_ICC_VERSION
+  547|  2.23k|  __builtin_assume(condition);
+  548|       |#elif FMT_GCC_VERSION
+  549|       |  if (!condition) __builtin_unreachable();
+  550|       |#endif
+  551|  2.23k|}
 _ZN3fmt3v1019basic_memory_bufferIcLm500ENSt3__19allocatorIcEEED2Ev:
-  966|  2.23k|  FMT_CONSTEXPR20 ~basic_memory_buffer() { deallocate(); }
+  969|  2.23k|  FMT_CONSTEXPR20 ~basic_memory_buffer() { deallocate(); }
 _ZN3fmt3v1019basic_memory_bufferIcLm500ENSt3__19allocatorIcEEE10deallocateEv:
-  927|  2.23k|  FMT_CONSTEXPR20 void deallocate() {
-  928|  2.23k|    T* data = this->data();
-  929|  2.23k|    if (data != store_) alloc_.deallocate(data, this->capacity());
+  930|  2.23k|  FMT_CONSTEXPR20 void deallocate() {
+  931|  2.23k|    T* data = this->data();
+  932|  2.23k|    if (data != store_) alloc_.deallocate(data, this->capacity());
   ------------------
-  |  Branch (929:9): [True: 0, False: 2.23k]
+  |  Branch (932:9): [True: 0, False: 2.23k]
   ------------------
-  930|  2.23k|  }
+  933|  2.23k|  }
 _ZN3fmt3v106detail7reserveINS0_8appenderEEERT_S5_m:
-  588|  2.23k|constexpr auto reserve(Iterator& it, size_t) -> Iterator& {
-  589|  2.23k|  return it;
-  590|  2.23k|}
+  591|  2.23k|constexpr auto reserve(Iterator& it, size_t) -> Iterator& {
+  592|  2.23k|  return it;
+  593|  2.23k|}
 _ZN3fmt3v106detail13base_iteratorINS0_8appenderEEET_S4_S4_:
-  616|  2.23k|constexpr auto base_iterator(Iterator, Iterator it) -> Iterator {
-  617|  2.23k|  return it;
-  618|  2.23k|}
+  619|  2.23k|constexpr auto base_iterator(Iterator, Iterator it) -> Iterator {
+  620|  2.23k|  return it;
+  621|  2.23k|}
 _ZN3fmt3v106detail17copy_str_noinlineIcPKcNS0_8appenderEEET1_T0_S7_S6_:
-  645|  2.23k|                                                  OutputIt out) -> OutputIt {
-  646|  2.23k|  return copy_str<OutChar>(begin, end, out);
-  647|  2.23k|}
+  648|  2.23k|                                                  OutputIt out) -> OutputIt {
+  649|  2.23k|  return copy_str<OutChar>(begin, end, out);
+  650|  2.23k|}
 _ZN3fmt3v106detail5writeIcNS0_8appenderEEET0_S4_NS0_17basic_string_viewIT_EE:
- 3687|  2.23k|    -> OutputIt {
- 3688|  2.23k|  auto it = reserve(out, value.size());
- 3689|  2.23k|  it = copy_str_noinline<Char>(value.begin(), value.end(), it);
- 3690|  2.23k|  return base_iterator(out, it);
- 3691|  2.23k|}
+ 3680|  2.23k|    -> OutputIt {
+ 3681|  2.23k|  auto it = reserve(out, value.size());
+ 3682|  2.23k|  it = copy_str_noinline<Char>(value.begin(), value.end(), it);
+ 3683|  2.23k|  return base_iterator(out, it);
+ 3684|  2.23k|}
 _ZZN3fmt3v106detail10vformat_toIcEEvRNS1_6bufferIT_EENS0_17basic_string_viewIS4_EENS1_12vformat_argsIS4_E4typeENS1_10locale_refEEN14format_handler7on_textEPKcSF_:
- 4379|  2.23k|    void on_text(const Char* begin, const Char* end) {
- 4380|  2.23k|      auto text = basic_string_view<Char>(begin, to_unsigned(end - begin));
- 4381|  2.23k|      context.advance_to(write<Char>(context.out(), text));
- 4382|  2.23k|    }
+ 4391|  2.23k|    void on_text(const Char* begin, const Char* end) {
+ 4392|  2.23k|      auto text = basic_string_view<Char>(begin, to_unsigned(end - begin));
+ 4393|  2.23k|      context.advance_to(write<Char>(context.out(), text));
+ 4394|  2.23k|    }
 _ZZN3fmt3v106detail10vformat_toIcEEvRNS1_6bufferIT_EENS0_17basic_string_viewIS4_EENS1_12vformat_argsIS4_E4typeENS1_10locale_refEEN14format_handlerC2ENS0_8appenderENS7_IcEENS0_17basic_format_argsINS0_20basic_format_contextISE_cEEEESC_:
- 4377|  2.23k|        : parse_context(str), context(p_out, p_args, p_loc) {}
+ 4389|  2.23k|        : parse_context(str), context(p_out, p_args, p_loc) {}
 _ZN3fmt3v109to_stringIcLm500EEENSt3__112basic_stringIT_NS2_11char_traitsIS4_EENS2_9allocatorIS4_EEEERKNS0_19basic_memory_bufferIS4_XT0_ES8_EE:
- 4343|  2.23k|    -> std::basic_string<Char> {
- 4344|  2.23k|  auto size = buf.size();
- 4345|  2.23k|  detail::assume(size < std::basic_string<Char>().max_size());
- 4346|  2.23k|  return std::basic_string<Char>(buf.data(), size);
- 4347|  2.23k|}
+ 4355|  2.23k|    -> std::basic_string<Char> {
+ 4356|  2.23k|  auto size = buf.size();
+ 4357|  2.23k|  detail::assume(size < std::basic_string<Char>().max_size());
+ 4358|  2.23k|  return std::basic_string<Char>(buf.data(), size);
+ 4359|  2.23k|}
 
 LLVMFuzzerTestOneInput:
    10|  1.18k|{
