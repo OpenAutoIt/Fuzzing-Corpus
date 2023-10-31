@@ -174,13 +174,13 @@ _ZNK3fmt3v106detail6bufferIcE4dataEv:
   849|  2.24k|  FMT_CONSTEXPR auto data() const noexcept -> const T* { return ptr_; }
 
 _ZN3fmt3v107vformatENS0_17basic_string_viewIcEENS0_17basic_format_argsINS0_20basic_format_contextINS0_8appenderEcEEEE:
- 1419|  2.24k|FMT_FUNC std::string vformat(string_view fmt, format_args args) {
- 1420|       |  // Don't optimize the "{}" case to keep the binary size small and because it
- 1421|       |  // can be better optimized in fmt::format anyway.
- 1422|  2.24k|  auto buffer = memory_buffer();
- 1423|  2.24k|  detail::vformat_to(buffer, fmt, args);
- 1424|  2.24k|  return to_string(buffer);
- 1425|  2.24k|}
+ 1418|  2.24k|FMT_FUNC std::string vformat(string_view fmt, format_args args) {
+ 1419|       |  // Don't optimize the "{}" case to keep the binary size small and because it
+ 1420|       |  // can be better optimized in fmt::format anyway.
+ 1421|  2.24k|  auto buffer = memory_buffer();
+ 1422|  2.24k|  detail::vformat_to(buffer, fmt, args);
+ 1423|  2.24k|  return to_string(buffer);
+ 1424|  2.24k|}
 
 _ZN3fmt3v106detail6bufferIcE6appendIcEEvPKT_S7_:
   875|  2.24k|void buffer<T>::append(const U* begin, const U* end) {
@@ -201,79 +201,79 @@ _ZN3fmt3v106detail6bufferIcE6appendIcEEvPKT_S7_:
   884|  2.24k|  }
   885|  2.24k|}
 _ZN3fmt3v106detail10vformat_toIcEEvRNS1_6bufferIT_EENS0_17basic_string_viewIS4_EENS1_12vformat_argsIS4_E4typeENS1_10locale_refE:
- 4375|  2.24k|                typename vformat_args<Char>::type args, locale_ref loc) {
- 4376|  2.24k|  auto out = buffer_appender<Char>(buf);
- 4377|  2.24k|  if (fmt.size() == 2 && equal2(fmt.data(), "{}")) {
+ 4378|  2.24k|                typename vformat_args<Char>::type args, locale_ref loc) {
+ 4379|  2.24k|  auto out = buffer_appender<Char>(buf);
+ 4380|  2.24k|  if (fmt.size() == 2 && equal2(fmt.data(), "{}")) {
   ------------------
-  |  Branch (4377:7): [True: 0, False: 2.24k]
-  |  Branch (4377:26): [True: 0, False: 0]
+  |  Branch (4380:7): [True: 0, False: 2.24k]
+  |  Branch (4380:26): [True: 0, False: 0]
   ------------------
- 4378|      0|    auto arg = args.get(0);
- 4379|      0|    if (!arg) error_handler().on_error("argument not found");
+ 4381|      0|    auto arg = args.get(0);
+ 4382|      0|    if (!arg) error_handler().on_error("argument not found");
   ------------------
-  |  Branch (4379:9): [True: 0, False: 0]
+  |  Branch (4382:9): [True: 0, False: 0]
   ------------------
- 4380|      0|    visit_format_arg(default_arg_formatter<Char>{out, args, loc}, arg);
- 4381|      0|    return;
- 4382|      0|  }
- 4383|       |
- 4384|  2.24k|  struct format_handler : error_handler {
- 4385|  2.24k|    basic_format_parse_context<Char> parse_context;
- 4386|  2.24k|    buffer_context<Char> context;
- 4387|       |
- 4388|  2.24k|    format_handler(buffer_appender<Char> p_out, basic_string_view<Char> str,
- 4389|  2.24k|                   basic_format_args<buffer_context<Char>> p_args,
- 4390|  2.24k|                   locale_ref p_loc)
- 4391|  2.24k|        : parse_context(str), context(p_out, p_args, p_loc) {}
- 4392|       |
- 4393|  2.24k|    void on_text(const Char* begin, const Char* end) {
- 4394|  2.24k|      auto text = basic_string_view<Char>(begin, to_unsigned(end - begin));
- 4395|  2.24k|      context.advance_to(write<Char>(context.out(), text));
- 4396|  2.24k|    }
- 4397|       |
- 4398|  2.24k|    FMT_CONSTEXPR auto on_arg_id() -> int {
- 4399|  2.24k|      return parse_context.next_arg_id();
- 4400|  2.24k|    }
- 4401|  2.24k|    FMT_CONSTEXPR auto on_arg_id(int id) -> int {
- 4402|  2.24k|      return parse_context.check_arg_id(id), id;
+ 4383|      0|    visit_format_arg(default_arg_formatter<Char>{out, args, loc}, arg);
+ 4384|      0|    return;
+ 4385|      0|  }
+ 4386|       |
+ 4387|  2.24k|  struct format_handler : error_handler {
+ 4388|  2.24k|    basic_format_parse_context<Char> parse_context;
+ 4389|  2.24k|    buffer_context<Char> context;
+ 4390|       |
+ 4391|  2.24k|    format_handler(buffer_appender<Char> p_out, basic_string_view<Char> str,
+ 4392|  2.24k|                   basic_format_args<buffer_context<Char>> p_args,
+ 4393|  2.24k|                   locale_ref p_loc)
+ 4394|  2.24k|        : parse_context(str), context(p_out, p_args, p_loc) {}
+ 4395|       |
+ 4396|  2.24k|    void on_text(const Char* begin, const Char* end) {
+ 4397|  2.24k|      auto text = basic_string_view<Char>(begin, to_unsigned(end - begin));
+ 4398|  2.24k|      context.advance_to(write<Char>(context.out(), text));
+ 4399|  2.24k|    }
+ 4400|       |
+ 4401|  2.24k|    FMT_CONSTEXPR auto on_arg_id() -> int {
+ 4402|  2.24k|      return parse_context.next_arg_id();
  4403|  2.24k|    }
- 4404|  2.24k|    FMT_CONSTEXPR auto on_arg_id(basic_string_view<Char> id) -> int {
- 4405|  2.24k|      int arg_id = context.arg_id(id);
- 4406|  2.24k|      if (arg_id < 0) on_error("argument not found");
- 4407|  2.24k|      return arg_id;
- 4408|  2.24k|    }
- 4409|       |
- 4410|  2.24k|    FMT_INLINE void on_replacement_field(int id, const Char*) {
- 4411|  2.24k|      auto arg = get_arg(context, id);
- 4412|  2.24k|      context.advance_to(visit_format_arg(
- 4413|  2.24k|          default_arg_formatter<Char>{context.out(), context.args(),
- 4414|  2.24k|                                      context.locale()},
- 4415|  2.24k|          arg));
- 4416|  2.24k|    }
- 4417|       |
- 4418|  2.24k|    auto on_format_specs(int id, const Char* begin, const Char* end)
- 4419|  2.24k|        -> const Char* {
- 4420|  2.24k|      auto arg = get_arg(context, id);
- 4421|  2.24k|      if (arg.type() == type::custom_type) {
- 4422|  2.24k|        parse_context.advance_to(begin);
- 4423|  2.24k|        visit_format_arg(custom_formatter<Char>{parse_context, context}, arg);
- 4424|  2.24k|        return parse_context.begin();
- 4425|  2.24k|      }
- 4426|  2.24k|      auto specs = detail::dynamic_format_specs<Char>();
- 4427|  2.24k|      begin = parse_format_specs(begin, end, specs, parse_context, arg.type());
- 4428|  2.24k|      detail::handle_dynamic_spec<detail::width_checker>(
- 4429|  2.24k|          specs.width, specs.width_ref, context);
- 4430|  2.24k|      detail::handle_dynamic_spec<detail::precision_checker>(
- 4431|  2.24k|          specs.precision, specs.precision_ref, context);
- 4432|  2.24k|      if (begin == end || *begin != '}')
- 4433|  2.24k|        on_error("missing '}' in format string");
- 4434|  2.24k|      auto f = arg_formatter<Char>{context.out(), specs, context.locale()};
- 4435|  2.24k|      context.advance_to(visit_format_arg(f, arg));
- 4436|  2.24k|      return begin;
- 4437|  2.24k|    }
- 4438|  2.24k|  };
- 4439|  2.24k|  detail::parse_format_string<false>(fmt, format_handler(out, fmt, args, loc));
- 4440|  2.24k|}
+ 4404|  2.24k|    FMT_CONSTEXPR auto on_arg_id(int id) -> int {
+ 4405|  2.24k|      return parse_context.check_arg_id(id), id;
+ 4406|  2.24k|    }
+ 4407|  2.24k|    FMT_CONSTEXPR auto on_arg_id(basic_string_view<Char> id) -> int {
+ 4408|  2.24k|      int arg_id = context.arg_id(id);
+ 4409|  2.24k|      if (arg_id < 0) on_error("argument not found");
+ 4410|  2.24k|      return arg_id;
+ 4411|  2.24k|    }
+ 4412|       |
+ 4413|  2.24k|    FMT_INLINE void on_replacement_field(int id, const Char*) {
+ 4414|  2.24k|      auto arg = get_arg(context, id);
+ 4415|  2.24k|      context.advance_to(visit_format_arg(
+ 4416|  2.24k|          default_arg_formatter<Char>{context.out(), context.args(),
+ 4417|  2.24k|                                      context.locale()},
+ 4418|  2.24k|          arg));
+ 4419|  2.24k|    }
+ 4420|       |
+ 4421|  2.24k|    auto on_format_specs(int id, const Char* begin, const Char* end)
+ 4422|  2.24k|        -> const Char* {
+ 4423|  2.24k|      auto arg = get_arg(context, id);
+ 4424|  2.24k|      if (arg.type() == type::custom_type) {
+ 4425|  2.24k|        parse_context.advance_to(begin);
+ 4426|  2.24k|        visit_format_arg(custom_formatter<Char>{parse_context, context}, arg);
+ 4427|  2.24k|        return parse_context.begin();
+ 4428|  2.24k|      }
+ 4429|  2.24k|      auto specs = detail::dynamic_format_specs<Char>();
+ 4430|  2.24k|      begin = parse_format_specs(begin, end, specs, parse_context, arg.type());
+ 4431|  2.24k|      detail::handle_dynamic_spec<detail::width_checker>(
+ 4432|  2.24k|          specs.width, specs.width_ref, context);
+ 4433|  2.24k|      detail::handle_dynamic_spec<detail::precision_checker>(
+ 4434|  2.24k|          specs.precision, specs.precision_ref, context);
+ 4435|  2.24k|      if (begin == end || *begin != '}')
+ 4436|  2.24k|        on_error("missing '}' in format string");
+ 4437|  2.24k|      auto f = arg_formatter<Char>{context.out(), specs, context.locale()};
+ 4438|  2.24k|      context.advance_to(visit_format_arg(f, arg));
+ 4439|  2.24k|      return begin;
+ 4440|  2.24k|    }
+ 4441|  2.24k|  };
+ 4442|  2.24k|  detail::parse_format_string<false>(fmt, format_handler(out, fmt, args, loc));
+ 4443|  2.24k|}
 _ZN3fmt3v1019basic_memory_bufferIcLm500ENSt3__19allocatorIcEEEC2ERKS4_:
   965|  2.24k|      : alloc_(alloc) {
   966|  2.24k|    this->set(store_, SIZE);
@@ -320,18 +320,18 @@ _ZN3fmt3v106detail5writeIcNS0_8appenderEEET0_S4_NS0_17basic_string_viewIT_EE:
  3683|  2.24k|  return base_iterator(out, it);
  3684|  2.24k|}
 _ZZN3fmt3v106detail10vformat_toIcEEvRNS1_6bufferIT_EENS0_17basic_string_viewIS4_EENS1_12vformat_argsIS4_E4typeENS1_10locale_refEEN14format_handler7on_textEPKcSF_:
- 4393|  2.24k|    void on_text(const Char* begin, const Char* end) {
- 4394|  2.24k|      auto text = basic_string_view<Char>(begin, to_unsigned(end - begin));
- 4395|  2.24k|      context.advance_to(write<Char>(context.out(), text));
- 4396|  2.24k|    }
+ 4396|  2.24k|    void on_text(const Char* begin, const Char* end) {
+ 4397|  2.24k|      auto text = basic_string_view<Char>(begin, to_unsigned(end - begin));
+ 4398|  2.24k|      context.advance_to(write<Char>(context.out(), text));
+ 4399|  2.24k|    }
 _ZZN3fmt3v106detail10vformat_toIcEEvRNS1_6bufferIT_EENS0_17basic_string_viewIS4_EENS1_12vformat_argsIS4_E4typeENS1_10locale_refEEN14format_handlerC2ENS0_8appenderENS7_IcEENS0_17basic_format_argsINS0_20basic_format_contextISE_cEEEESC_:
- 4391|  2.24k|        : parse_context(str), context(p_out, p_args, p_loc) {}
+ 4394|  2.24k|        : parse_context(str), context(p_out, p_args, p_loc) {}
 _ZN3fmt3v109to_stringIcLm500EEENSt3__112basic_stringIT_NS2_11char_traitsIS4_EENS2_9allocatorIS4_EEEERKNS0_19basic_memory_bufferIS4_XT0_ES8_EE:
- 4357|  2.24k|    -> std::basic_string<Char> {
- 4358|  2.24k|  auto size = buf.size();
- 4359|  2.24k|  detail::assume(size < std::basic_string<Char>().max_size());
- 4360|  2.24k|  return std::basic_string<Char>(buf.data(), size);
- 4361|  2.24k|}
+ 4360|  2.24k|    -> std::basic_string<Char> {
+ 4361|  2.24k|  auto size = buf.size();
+ 4362|  2.24k|  detail::assume(size < std::basic_string<Char>().max_size());
+ 4363|  2.24k|  return std::basic_string<Char>(buf.data(), size);
+ 4364|  2.24k|}
 
 LLVMFuzzerTestOneInput:
    10|  1.19k|{
