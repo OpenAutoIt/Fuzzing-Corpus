@@ -1,132 +1,132 @@
 _ZN3fmt3v106detail6bufferIcE6appendIcEEvPKT_S7_:
-  904|  2.18k|  template <typename U> void append(const U* begin, const U* end) {
-  905|  4.37k|    while (begin != end) {
+  904|  2.83k|  template <typename U> void append(const U* begin, const U* end) {
+  905|  5.67k|    while (begin != end) {
   ------------------
-  |  Branch (905:12): [True: 2.18k, False: 2.18k]
+  |  Branch (905:12): [True: 2.83k, False: 2.83k]
   ------------------
-  906|  2.18k|      auto count = to_unsigned(end - begin);
-  907|  2.18k|      try_reserve(size_ + count);
-  908|  2.18k|      auto free_cap = capacity_ - size_;
-  909|  2.18k|      if (free_cap < count) count = free_cap;
+  906|  2.83k|      auto count = to_unsigned(end - begin);
+  907|  2.83k|      try_reserve(size_ + count);
+  908|  2.83k|      auto free_cap = capacity_ - size_;
+  909|  2.83k|      if (free_cap < count) count = free_cap;
   ------------------
-  |  Branch (909:11): [True: 0, False: 2.18k]
+  |  Branch (909:11): [True: 0, False: 2.83k]
   ------------------
-  910|  2.18k|      if (std::is_same<T, U>::value) {
+  910|  2.83k|      if (std::is_same<T, U>::value) {
   ------------------
   |  Branch (910:11): [Folded - Ignored]
   ------------------
-  911|  2.18k|        memcpy(ptr_ + size_, begin, count * sizeof(T));
-  912|  2.18k|      } else {
+  911|  2.83k|        memcpy(ptr_ + size_, begin, count * sizeof(T));
+  912|  2.83k|      } else {
   913|      0|        T* out = ptr_ + size_;
   914|      0|        for (size_t i = 0; i < count; ++i) out[i] = begin[i];
   ------------------
   |  Branch (914:28): [True: 0, False: 0]
   ------------------
   915|      0|      }
-  916|  2.18k|      size_ += count;
-  917|  2.18k|      begin += count;
-  918|  2.18k|    }
-  919|  2.18k|  }
+  916|  2.83k|      size_ += count;
+  917|  2.83k|      begin += count;
+  918|  2.83k|    }
+  919|  2.83k|  }
 _ZN3fmt3v106detail13ignore_unusedIJbA15_cEEEvDpRKT_:
-  346|  4.37k|template <typename... T> FMT_CONSTEXPR void ignore_unused(const T&...) {}
+  346|  5.67k|template <typename... T> FMT_CONSTEXPR void ignore_unused(const T&...) {}
 _ZN3fmt3v1014basic_appenderIcEC2ERNS0_6detail6bufferIcEE:
- 1150|  2.18k|  FMT_CONSTEXPR basic_appender(detail::buffer<T>& buf) : buffer_(&buf) {}
+ 1150|  2.83k|  FMT_CONSTEXPR basic_appender(detail::buffer<T>& buf) : buffer_(&buf) {}
 _ZNK3fmt3v1017basic_string_viewIcE4sizeEv:
-  517|  6.56k|  constexpr auto size() const noexcept -> size_t { return size_; }
+  517|  8.50k|  constexpr auto size() const noexcept -> size_t { return size_; }
 _ZNK3fmt3v106detail6bufferIcE4sizeEv:
-  871|  4.37k|  constexpr auto size() const noexcept -> size_t { return size_; }
+  871|  5.67k|  constexpr auto size() const noexcept -> size_t { return size_; }
 _ZN3fmt3v106detail6bufferIcEC2EPFvRS3_mEPcmm:
-  846|  2.18k|      : ptr_(p), size_(sz), capacity_(cap), grow_(grow) {}
+  846|  2.83k|      : ptr_(p), size_(sz), capacity_(cap), grow_(grow) {}
 _ZN3fmt3v106detail6bufferIcE3setEPcm:
-  852|  2.18k|  FMT_CONSTEXPR void set(T* buf_data, size_t buf_capacity) noexcept {
-  853|  2.18k|    ptr_ = buf_data;
-  854|  2.18k|    capacity_ = buf_capacity;
-  855|  2.18k|  }
+  852|  2.83k|  FMT_CONSTEXPR void set(T* buf_data, size_t buf_capacity) noexcept {
+  853|  2.83k|    ptr_ = buf_data;
+  854|  2.83k|    capacity_ = buf_capacity;
+  855|  2.83k|  }
 _ZN3fmt3v106detail6bufferIcE4dataEv:
-  877|  2.18k|  FMT_CONSTEXPR auto data() noexcept -> T* { return ptr_; }
+  877|  2.83k|  FMT_CONSTEXPR auto data() noexcept -> T* { return ptr_; }
 _ZN3fmt3v1013get_containerENS0_14basic_appenderIcEE:
- 1138|  4.37k|  friend auto get_container(basic_appender app) -> detail::buffer<T>& {
- 1139|  4.37k|    return *app.buffer_;
- 1140|  4.37k|  }
+ 1138|  5.67k|  friend auto get_container(basic_appender app) -> detail::buffer<T>& {
+ 1139|  5.67k|    return *app.buffer_;
+ 1140|  5.67k|  }
 _ZN3fmt3v106detail4copyIcPKcEENS0_14basic_appenderIcEET0_S7_S6_:
- 1181|  2.18k|auto copy(InputIt begin, InputIt end, appender out) -> appender {
- 1182|  2.18k|  get_container(out).append(begin, end);
- 1183|  2.18k|  return out;
- 1184|  2.18k|}
+ 1181|  2.83k|auto copy(InputIt begin, InputIt end, appender out) -> appender {
+ 1182|  2.83k|  get_container(out).append(begin, end);
+ 1183|  2.83k|  return out;
+ 1184|  2.83k|}
 _ZNK3fmt3v1017basic_string_viewIcE5beginEv:
-  519|  2.18k|  constexpr auto begin() const noexcept -> iterator { return data_; }
+  519|  2.83k|  constexpr auto begin() const noexcept -> iterator { return data_; }
 _ZNK3fmt3v1017basic_string_viewIcE3endEv:
-  520|  2.18k|  constexpr auto end() const noexcept -> iterator { return data_ + size_; }
+  520|  2.83k|  constexpr auto end() const noexcept -> iterator { return data_ + size_; }
 _ZN3fmt3v1017basic_string_viewIcEC2EPKc:
-  501|  2.18k|                  : detail::length(s)) {}
+  501|  2.83k|                  : detail::length(s)) {}
 _ZN3fmt3v106detail10locale_refC2Ev:
- 1555|  2.18k|  constexpr locale_ref() : locale_(nullptr) {}
+ 1555|  2.83k|  constexpr locale_ref() : locale_(nullptr) {}
 _ZNK3fmt3v1019basic_format_stringIcJEEcvNS0_17basic_string_viewIcEEEv:
- 2873|  2.18k|  FMT_ALWAYS_INLINE operator basic_string_view<Char>() const { return str_; }
+ 2873|  2.83k|  FMT_ALWAYS_INLINE operator basic_string_view<Char>() const { return str_; }
 _ZN3fmt3v1016make_format_argsINS0_7contextEJELm0ELm0ELy0ELi0EEENS0_6detail16format_arg_storeIT_XT1_ELm0EXT3_EEEDpRT0_:
- 2004|  2.18k|    -> detail::format_arg_store<Context, NUM_ARGS, 0, DESC> {
- 2005|  2.18k|  return {{detail::make_arg<NUM_ARGS <= detail::max_packed_args, Context>(
- 2006|  2.18k|      args)...}};
- 2007|  2.18k|}
+ 2004|  2.83k|    -> detail::format_arg_store<Context, NUM_ARGS, 0, DESC> {
+ 2005|  2.83k|  return {{detail::make_arg<NUM_ARGS <= detail::max_packed_args, Context>(
+ 2006|  2.83k|      args)...}};
+ 2007|  2.83k|}
 _ZN3fmt3v106detail5valueINS0_7contextEEC2Ev:
- 1324|  2.18k|  constexpr FMT_ALWAYS_INLINE value() : no_value() {}
+ 1324|  2.83k|  constexpr FMT_ALWAYS_INLINE value() : no_value() {}
 _ZN3fmt3v109monostateC2Ev:
-  321|  2.18k|  constexpr monostate() {}
+  321|  2.83k|  constexpr monostate() {}
 _ZN3fmt3v1017basic_format_argsINS0_7contextEEC2ILm0ELm0ELy0ELi0EEERKNS0_6detail16format_arg_storeIS2_XT_EXT0_EXT1_EEE:
- 1863|  2.18k|      : desc_(DESC), values_(store.args + (NUM_NAMED_ARGS != 0 ? 1 : 0)) {}
+ 1863|  2.83k|      : desc_(DESC), values_(store.args + (NUM_NAMED_ARGS != 0 ? 1 : 0)) {}
 _ZNK3fmt3v1017basic_string_viewIcE4dataEv:
-  514|  2.18k|  constexpr auto data() const noexcept -> const Char* { return data_; }
+  514|  2.83k|  constexpr auto data() const noexcept -> const Char* { return data_; }
 _ZN3fmt3v1017basic_string_viewIcEC2EPKcm:
-  488|  2.18k|      : data_(s), size_(count) {}
+  488|  2.83k|      : data_(s), size_(count) {}
 _ZN3fmt3v106detail11to_unsignedIlEENSt3__113make_unsignedIT_E4typeES5_:
-  406|  4.37k|FMT_CONSTEXPR auto to_unsigned(Int value) -> make_unsigned_t<Int> {
-  407|  4.37k|  FMT_ASSERT(std::is_unsigned<Int>::value || value >= 0, "negative value");
+  406|  5.67k|FMT_CONSTEXPR auto to_unsigned(Int value) -> make_unsigned_t<Int> {
+  407|  5.67k|  FMT_ASSERT(std::is_unsigned<Int>::value || value >= 0, "negative value");
   ------------------
-  |  |  375|  8.75k|      fmt::detail::ignore_unused((condition), (message))
+  |  |  375|  11.3k|      fmt::detail::ignore_unused((condition), (message))
   |  |  ------------------
   |  |  |  Branch (375:35): [Folded - Ignored]
-  |  |  |  Branch (375:35): [True: 4.37k, False: 0]
+  |  |  |  Branch (375:35): [True: 5.67k, False: 0]
   |  |  ------------------
   ------------------
-  408|  4.37k|  return static_cast<make_unsigned_t<Int>>(value);
-  409|  4.37k|}
+  408|  5.67k|  return static_cast<make_unsigned_t<Int>>(value);
+  409|  5.67k|}
 _ZN3fmt3v106detail6bufferIcE11try_reserveEm:
-  894|  4.37k|  FMT_CONSTEXPR void try_reserve(size_t new_capacity) {
-  895|  4.37k|    if (new_capacity > capacity_) grow_(*this, new_capacity);
+  894|  5.67k|  FMT_CONSTEXPR void try_reserve(size_t new_capacity) {
+  895|  5.67k|    if (new_capacity > capacity_) grow_(*this, new_capacity);
   ------------------
-  |  Branch (895:9): [True: 0, False: 4.37k]
+  |  Branch (895:9): [True: 0, False: 5.67k]
   ------------------
-  896|  4.37k|  }
+  896|  5.67k|  }
 _ZN3fmt3v1026basic_format_parse_contextIcEC2ENS0_17basic_string_viewIcEEi:
-  731|  2.18k|      : format_str_(format_str), next_arg_id_(next_arg_id) {}
+  731|  2.83k|      : format_str_(format_str), next_arg_id_(next_arg_id) {}
 _ZN3fmt3v107contextC2ENS0_14basic_appenderIcEENS0_17basic_format_argsIS1_EENS0_6detail10locale_refE:
- 1950|  2.18k|      : out_(out), args_(ctx_args), loc_(loc) {}
+ 1950|  2.83k|      : out_(out), args_(ctx_args), loc_(loc) {}
 _ZN3fmt3v107context3outEv:
- 1963|  2.18k|  FMT_CONSTEXPR auto out() -> iterator { return out_; }
+ 1963|  2.83k|  FMT_CONSTEXPR auto out() -> iterator { return out_; }
 _ZN3fmt3v106detail19parse_format_stringILb0EcZNS1_10vformat_toIcEEvRNS1_6bufferIT_EENS0_17basic_string_viewIS5_EENS1_12vformat_argsIS5_E4typeENS1_10locale_refEE14format_handlerEEvNS8_IT0_EEOT1_:
- 2592|  2.18k|                                       Handler&& handler) {
- 2593|  2.18k|  auto begin = format_str.data();
- 2594|  2.18k|  auto end = begin + format_str.size();
- 2595|  2.18k|  if (end - begin < 32) {
+ 2592|  2.83k|                                       Handler&& handler) {
+ 2593|  2.83k|  auto begin = format_str.data();
+ 2594|  2.83k|  auto end = begin + format_str.size();
+ 2595|  2.83k|  if (end - begin < 32) {
   ------------------
-  |  Branch (2595:7): [True: 2.18k, False: 0]
+  |  Branch (2595:7): [True: 2.83k, False: 0]
   ------------------
  2596|       |    // Use a simple loop instead of memchr for small strings.
- 2597|  2.18k|    const Char* p = begin;
- 2598|  50.3k|    while (p != end) {
+ 2597|  2.83k|    const Char* p = begin;
+ 2598|  65.2k|    while (p != end) {
   ------------------
-  |  Branch (2598:12): [True: 48.1k, False: 2.18k]
+  |  Branch (2598:12): [True: 62.3k, False: 2.83k]
   ------------------
- 2599|  48.1k|      auto c = *p++;
- 2600|  48.1k|      if (c == '{') {
+ 2599|  62.3k|      auto c = *p++;
+ 2600|  62.3k|      if (c == '{') {
   ------------------
-  |  Branch (2600:11): [True: 0, False: 48.1k]
+  |  Branch (2600:11): [True: 0, False: 62.3k]
   ------------------
  2601|      0|        handler.on_text(begin, p - 1);
  2602|      0|        begin = p = parse_replacement_field(p - 1, end, handler);
- 2603|  48.1k|      } else if (c == '}') {
+ 2603|  62.3k|      } else if (c == '}') {
   ------------------
-  |  Branch (2603:18): [True: 0, False: 48.1k]
+  |  Branch (2603:18): [True: 0, False: 62.3k]
   ------------------
  2604|      0|        if (p == end || *p != '}')
   ------------------
@@ -137,10 +137,10 @@ _ZN3fmt3v106detail19parse_format_stringILb0EcZNS1_10vformat_toIcEEvRNS1_6bufferI
  2606|      0|        handler.on_text(begin, p);
  2607|      0|        begin = ++p;
  2608|      0|      }
- 2609|  48.1k|    }
- 2610|  2.18k|    handler.on_text(begin, end);
- 2611|  2.18k|    return;
- 2612|  2.18k|  }
+ 2609|  62.3k|    }
+ 2610|  2.83k|    handler.on_text(begin, end);
+ 2611|  2.83k|    return;
+ 2612|  2.83k|  }
  2613|      0|  struct writer {
  2614|      0|    FMT_CONSTEXPR void operator()(const Char* from, const Char* to) {
  2615|      0|      if (from == to) return;
@@ -175,25 +175,25 @@ _ZN3fmt3v106detail19parse_format_stringILb0EcZNS1_10vformat_toIcEEvRNS1_6bufferI
  2637|      0|  }
  2638|      0|}
 _ZN3fmt3v107context10advance_toENS0_14basic_appenderIcEE:
- 1966|  2.18k|  void advance_to(iterator) {}
+ 1966|  2.83k|  void advance_to(iterator) {}
 _ZNK3fmt3v106detail6bufferIcE4dataEv:
-  878|  2.18k|  FMT_CONSTEXPR auto data() const noexcept -> const T* { return ptr_; }
+  878|  2.83k|  FMT_CONSTEXPR auto data() const noexcept -> const T* { return ptr_; }
 
 _ZN3fmt3v107vformatENS0_17basic_string_viewIcEENS0_17basic_format_argsINS0_7contextEEE:
- 1429|  2.18k|FMT_FUNC auto vformat(string_view fmt, format_args args) -> std::string {
+ 1429|  2.83k|FMT_FUNC auto vformat(string_view fmt, format_args args) -> std::string {
  1430|       |  // Don't optimize the "{}" case to keep the binary size small and because it
  1431|       |  // can be better optimized in fmt::format anyway.
- 1432|  2.18k|  auto buffer = memory_buffer();
- 1433|  2.18k|  detail::vformat_to(buffer, fmt, args);
- 1434|  2.18k|  return to_string(buffer);
- 1435|  2.18k|}
+ 1432|  2.83k|  auto buffer = memory_buffer();
+ 1433|  2.83k|  detail::vformat_to(buffer, fmt, args);
+ 1434|  2.83k|  return to_string(buffer);
+ 1435|  2.83k|}
 
 _ZN3fmt3v106detail10vformat_toIcEEvRNS1_6bufferIT_EENS0_17basic_string_viewIS4_EENS1_12vformat_argsIS4_E4typeENS1_10locale_refE:
- 4242|  2.18k|                typename vformat_args<Char>::type args, locale_ref loc) {
- 4243|  2.18k|  auto out = basic_appender<Char>(buf);
- 4244|  2.18k|  if (fmt.size() == 2 && equal2(fmt.data(), "{}")) {
+ 4242|  2.83k|                typename vformat_args<Char>::type args, locale_ref loc) {
+ 4243|  2.83k|  auto out = basic_appender<Char>(buf);
+ 4244|  2.83k|  if (fmt.size() == 2 && equal2(fmt.data(), "{}")) {
   ------------------
-  |  Branch (4244:7): [True: 0, False: 2.18k]
+  |  Branch (4244:7): [True: 0, False: 2.83k]
   |  Branch (4244:26): [True: 0, False: 0]
   ------------------
  4245|      0|    auto arg = args.get(0);
@@ -205,154 +205,154 @@ _ZN3fmt3v106detail10vformat_toIcEEvRNS1_6bufferIT_EENS0_17basic_string_viewIS4_E
  4248|      0|    return;
  4249|      0|  }
  4250|       |
- 4251|  2.18k|  struct format_handler {
- 4252|  2.18k|    basic_format_parse_context<Char> parse_context;
- 4253|  2.18k|    buffered_context<Char> context;
+ 4251|  2.83k|  struct format_handler {
+ 4252|  2.83k|    basic_format_parse_context<Char> parse_context;
+ 4253|  2.83k|    buffered_context<Char> context;
  4254|       |
- 4255|  2.18k|    format_handler(basic_appender<Char> p_out, basic_string_view<Char> str,
- 4256|  2.18k|                   basic_format_args<buffered_context<Char>> p_args,
- 4257|  2.18k|                   locale_ref p_loc)
- 4258|  2.18k|        : parse_context(str), context(p_out, p_args, p_loc) {}
+ 4255|  2.83k|    format_handler(basic_appender<Char> p_out, basic_string_view<Char> str,
+ 4256|  2.83k|                   basic_format_args<buffered_context<Char>> p_args,
+ 4257|  2.83k|                   locale_ref p_loc)
+ 4258|  2.83k|        : parse_context(str), context(p_out, p_args, p_loc) {}
  4259|       |
- 4260|  2.18k|    void on_text(const Char* begin, const Char* end) {
- 4261|  2.18k|      auto text = basic_string_view<Char>(begin, to_unsigned(end - begin));
- 4262|  2.18k|      context.advance_to(write<Char>(context.out(), text));
- 4263|  2.18k|    }
+ 4260|  2.83k|    void on_text(const Char* begin, const Char* end) {
+ 4261|  2.83k|      auto text = basic_string_view<Char>(begin, to_unsigned(end - begin));
+ 4262|  2.83k|      context.advance_to(write<Char>(context.out(), text));
+ 4263|  2.83k|    }
  4264|       |
- 4265|  2.18k|    FMT_CONSTEXPR auto on_arg_id() -> int {
- 4266|  2.18k|      return parse_context.next_arg_id();
- 4267|  2.18k|    }
- 4268|  2.18k|    FMT_CONSTEXPR auto on_arg_id(int id) -> int {
- 4269|  2.18k|      parse_context.check_arg_id(id);
- 4270|  2.18k|      return id;
- 4271|  2.18k|    }
- 4272|  2.18k|    FMT_CONSTEXPR auto on_arg_id(basic_string_view<Char> id) -> int {
- 4273|  2.18k|      parse_context.check_arg_id(id);
- 4274|  2.18k|      int arg_id = context.arg_id(id);
- 4275|  2.18k|      if (arg_id < 0) report_error("argument not found");
- 4276|  2.18k|      return arg_id;
- 4277|  2.18k|    }
+ 4265|  2.83k|    FMT_CONSTEXPR auto on_arg_id() -> int {
+ 4266|  2.83k|      return parse_context.next_arg_id();
+ 4267|  2.83k|    }
+ 4268|  2.83k|    FMT_CONSTEXPR auto on_arg_id(int id) -> int {
+ 4269|  2.83k|      parse_context.check_arg_id(id);
+ 4270|  2.83k|      return id;
+ 4271|  2.83k|    }
+ 4272|  2.83k|    FMT_CONSTEXPR auto on_arg_id(basic_string_view<Char> id) -> int {
+ 4273|  2.83k|      parse_context.check_arg_id(id);
+ 4274|  2.83k|      int arg_id = context.arg_id(id);
+ 4275|  2.83k|      if (arg_id < 0) report_error("argument not found");
+ 4276|  2.83k|      return arg_id;
+ 4277|  2.83k|    }
  4278|       |
- 4279|  2.18k|    FMT_INLINE void on_replacement_field(int id, const Char*) {
- 4280|  2.18k|      auto arg = get_arg(context, id);
- 4281|  2.18k|      context.advance_to(arg.visit(default_arg_formatter<Char>{
- 4282|  2.18k|          context.out(), context.args(), context.locale()}));
- 4283|  2.18k|    }
+ 4279|  2.83k|    FMT_INLINE void on_replacement_field(int id, const Char*) {
+ 4280|  2.83k|      auto arg = get_arg(context, id);
+ 4281|  2.83k|      context.advance_to(arg.visit(default_arg_formatter<Char>{
+ 4282|  2.83k|          context.out(), context.args(), context.locale()}));
+ 4283|  2.83k|    }
  4284|       |
- 4285|  2.18k|    auto on_format_specs(int id, const Char* begin, const Char* end)
- 4286|  2.18k|        -> const Char* {
- 4287|  2.18k|      auto arg = get_arg(context, id);
+ 4285|  2.83k|    auto on_format_specs(int id, const Char* begin, const Char* end)
+ 4286|  2.83k|        -> const Char* {
+ 4287|  2.83k|      auto arg = get_arg(context, id);
  4288|       |      // Not using a visitor for custom types gives better codegen.
- 4289|  2.18k|      if (arg.format_custom(begin, parse_context, context))
- 4290|  2.18k|        return parse_context.begin();
- 4291|  2.18k|      auto specs = detail::dynamic_format_specs<Char>();
- 4292|  2.18k|      begin = parse_format_specs(begin, end, specs, parse_context, arg.type());
- 4293|  2.18k|      detail::handle_dynamic_spec<detail::width_checker>(
- 4294|  2.18k|          specs.width, specs.width_ref, context);
- 4295|  2.18k|      detail::handle_dynamic_spec<detail::precision_checker>(
- 4296|  2.18k|          specs.precision, specs.precision_ref, context);
- 4297|  2.18k|      if (begin == end || *begin != '}')
- 4298|  2.18k|        report_error("missing '}' in format string");
- 4299|  2.18k|      context.advance_to(arg.visit(
- 4300|  2.18k|          arg_formatter<Char>{context.out(), specs, context.locale()}));
- 4301|  2.18k|      return begin;
- 4302|  2.18k|    }
+ 4289|  2.83k|      if (arg.format_custom(begin, parse_context, context))
+ 4290|  2.83k|        return parse_context.begin();
+ 4291|  2.83k|      auto specs = detail::dynamic_format_specs<Char>();
+ 4292|  2.83k|      begin = parse_format_specs(begin, end, specs, parse_context, arg.type());
+ 4293|  2.83k|      detail::handle_dynamic_spec<detail::width_checker>(
+ 4294|  2.83k|          specs.width, specs.width_ref, context);
+ 4295|  2.83k|      detail::handle_dynamic_spec<detail::precision_checker>(
+ 4296|  2.83k|          specs.precision, specs.precision_ref, context);
+ 4297|  2.83k|      if (begin == end || *begin != '}')
+ 4298|  2.83k|        report_error("missing '}' in format string");
+ 4299|  2.83k|      context.advance_to(arg.visit(
+ 4300|  2.83k|          arg_formatter<Char>{context.out(), specs, context.locale()}));
+ 4301|  2.83k|      return begin;
+ 4302|  2.83k|    }
  4303|       |
- 4304|  2.18k|    void on_error(const char* message) { report_error(message); }
- 4305|  2.18k|  };
- 4306|  2.18k|  detail::parse_format_string<false>(fmt, format_handler(out, fmt, args, loc));
- 4307|  2.18k|}
+ 4304|  2.83k|    void on_error(const char* message) { report_error(message); }
+ 4305|  2.83k|  };
+ 4306|  2.83k|  detail::parse_format_string<false>(fmt, format_handler(out, fmt, args, loc));
+ 4307|  2.83k|}
 _ZN3fmt3v1019basic_memory_bufferIcLm500ENSt3__19allocatorIcEEEC2ERKS4_:
-  882|  2.18k|      : detail::buffer<T>(grow), alloc_(alloc) {
-  883|  2.18k|    this->set(store_, SIZE);
-  884|  2.18k|    if (detail::is_constant_evaluated()) detail::fill_n(store_, SIZE, T());
+  882|  2.83k|      : detail::buffer<T>(grow), alloc_(alloc) {
+  883|  2.83k|    this->set(store_, SIZE);
+  884|  2.83k|    if (detail::is_constant_evaluated()) detail::fill_n(store_, SIZE, T());
   ------------------
   |  Branch (884:9): [Folded - Ignored]
   ------------------
-  885|  2.18k|  }
+  885|  2.83k|  }
 _ZN3fmt3v106detail6assumeEb:
-  484|  2.18k|FMT_INLINE void assume(bool condition) {
-  485|  2.18k|  (void)condition;
-  486|  2.18k|#if FMT_HAS_BUILTIN(__builtin_assume) && !FMT_ICC_VERSION
-  487|  2.18k|  __builtin_assume(condition);
+  484|  2.83k|FMT_INLINE void assume(bool condition) {
+  485|  2.83k|  (void)condition;
+  486|  2.83k|#if FMT_HAS_BUILTIN(__builtin_assume) && !FMT_ICC_VERSION
+  487|  2.83k|  __builtin_assume(condition);
   488|       |#elif FMT_GCC_VERSION
   489|       |  if (!condition) __builtin_unreachable();
   490|       |#endif
-  491|  2.18k|}
+  491|  2.83k|}
 _ZN3fmt3v1019basic_memory_bufferIcLm500ENSt3__19allocatorIcEEED2Ev:
-  886|  2.18k|  FMT_CONSTEXPR20 ~basic_memory_buffer() { deallocate(); }
+  886|  2.83k|  FMT_CONSTEXPR20 ~basic_memory_buffer() { deallocate(); }
 _ZN3fmt3v1019basic_memory_bufferIcLm500ENSt3__19allocatorIcEEE10deallocateEv:
-  847|  2.18k|  FMT_CONSTEXPR20 void deallocate() {
-  848|  2.18k|    T* data = this->data();
-  849|  2.18k|    if (data != store_) alloc_.deallocate(data, this->capacity());
+  847|  2.83k|  FMT_CONSTEXPR20 void deallocate() {
+  848|  2.83k|    T* data = this->data();
+  849|  2.83k|    if (data != store_) alloc_.deallocate(data, this->capacity());
   ------------------
-  |  Branch (849:9): [True: 0, False: 2.18k]
+  |  Branch (849:9): [True: 0, False: 2.83k]
   ------------------
-  850|  2.18k|  }
+  850|  2.83k|  }
 _ZN3fmt3v106detail5writeIcNS0_14basic_appenderIcEEEET0_S5_NS0_17basic_string_viewIT_EE:
- 3655|  2.18k|    -> OutputIt {
- 3656|  2.18k|  auto it = reserve(out, value.size());
- 3657|  2.18k|  it = copy_noinline<Char>(value.begin(), value.end(), it);
- 3658|  2.18k|  return base_iterator(out, it);
- 3659|  2.18k|}
+ 3655|  2.83k|    -> OutputIt {
+ 3656|  2.83k|  auto it = reserve(out, value.size());
+ 3657|  2.83k|  it = copy_noinline<Char>(value.begin(), value.end(), it);
+ 3658|  2.83k|  return base_iterator(out, it);
+ 3659|  2.83k|}
 _ZN3fmt3v106detail7reserveIcEENS0_14basic_appenderIT_EES5_m:
-  525|  2.18k|inline auto reserve(basic_appender<T> it, size_t n) -> basic_appender<T> {
-  526|  2.18k|  buffer<T>& buf = get_container(it);
-  527|  2.18k|  buf.try_reserve(buf.size() + n);
-  528|  2.18k|  return it;
-  529|  2.18k|}
+  525|  2.83k|inline auto reserve(basic_appender<T> it, size_t n) -> basic_appender<T> {
+  526|  2.83k|  buffer<T>& buf = get_container(it);
+  527|  2.83k|  buf.try_reserve(buf.size() + n);
+  528|  2.83k|  return it;
+  529|  2.83k|}
 _ZN3fmt3v106detail13copy_noinlineIcPKcNS0_14basic_appenderIcEEEET1_T0_S8_S7_:
-  585|  2.18k|                                              OutputIt out) -> OutputIt {
-  586|  2.18k|  return copy<OutChar>(begin, end, out);
-  587|  2.18k|}
+  585|  2.83k|                                              OutputIt out) -> OutputIt {
+  586|  2.83k|  return copy<OutChar>(begin, end, out);
+  587|  2.83k|}
 _ZN3fmt3v106detail13base_iteratorINS0_14basic_appenderIcEEEET_S5_S5_:
-  562|  2.18k|constexpr auto base_iterator(Iterator, Iterator it) -> Iterator {
-  563|  2.18k|  return it;
-  564|  2.18k|}
+  562|  2.83k|constexpr auto base_iterator(Iterator, Iterator it) -> Iterator {
+  563|  2.83k|  return it;
+  564|  2.83k|}
 _ZZN3fmt3v106detail10vformat_toIcEEvRNS1_6bufferIT_EENS0_17basic_string_viewIS4_EENS1_12vformat_argsIS4_E4typeENS1_10locale_refEEN14format_handler7on_textEPKcSF_:
- 4260|  2.18k|    void on_text(const Char* begin, const Char* end) {
- 4261|  2.18k|      auto text = basic_string_view<Char>(begin, to_unsigned(end - begin));
- 4262|  2.18k|      context.advance_to(write<Char>(context.out(), text));
- 4263|  2.18k|    }
+ 4260|  2.83k|    void on_text(const Char* begin, const Char* end) {
+ 4261|  2.83k|      auto text = basic_string_view<Char>(begin, to_unsigned(end - begin));
+ 4262|  2.83k|      context.advance_to(write<Char>(context.out(), text));
+ 4263|  2.83k|    }
 _ZZN3fmt3v106detail10vformat_toIcEEvRNS1_6bufferIT_EENS0_17basic_string_viewIS4_EENS1_12vformat_argsIS4_E4typeENS1_10locale_refEEN14format_handlerC2ENS0_14basic_appenderIcEENS7_IcEENS0_17basic_format_argsINS0_7contextEEESC_:
- 4258|  2.18k|        : parse_context(str), context(p_out, p_args, p_loc) {}
+ 4258|  2.83k|        : parse_context(str), context(p_out, p_args, p_loc) {}
 _ZN3fmt3v109to_stringIcLm500EEENSt3__112basic_stringIT_NS2_11char_traitsIS4_EENS2_9allocatorIS4_EEEERKNS0_19basic_memory_bufferIS4_XT0_ES8_EE:
- 4224|  2.18k|    -> std::basic_string<Char> {
- 4225|  2.18k|  auto size = buf.size();
- 4226|  2.18k|  detail::assume(size < std::basic_string<Char>().max_size());
- 4227|  2.18k|  return std::basic_string<Char>(buf.data(), size);
- 4228|  2.18k|}
+ 4224|  2.83k|    -> std::basic_string<Char> {
+ 4225|  2.83k|  auto size = buf.size();
+ 4226|  2.83k|  detail::assume(size < std::basic_string<Char>().max_size());
+ 4227|  2.83k|  return std::basic_string<Char>(buf.data(), size);
+ 4228|  2.83k|}
 
 LLVMFuzzerTestOneInput:
-   10|  1.29k|{
-   11|  1.29k|    disable_output();
+   10|  1.24k|{
+   11|  1.24k|    disable_output();
    12|       |
-   13|  1.29k|    phi::string_view source = phi::string_view(reinterpret_cast<const char*>(data), size);
+   13|  1.24k|    phi::string_view source = phi::string_view(reinterpret_cast<const char*>(data), size);
    14|       |
-   15|  1.29k|    DiagnosticEngine diagnostic_engine;
+   15|  1.24k|    DiagnosticEngine diagnostic_engine;
    16|       |
-   17|  1.29k|    Lexer lexer{&diagnostic_engine};
+   17|  1.24k|    Lexer lexer{&diagnostic_engine};
    18|       |
-   19|  1.29k|    (void)lexer.ProcessString("Fuzz.au3", source);
+   19|  1.24k|    (void)lexer.ProcessString("Fuzz.au3", source);
    20|       |
-   21|  1.29k|    return 0;
-   22|  1.29k|}
+   21|  1.24k|    return 0;
+   22|  1.24k|}
 
 _ZN10OpenAutoIt17DiagnosticBuilder7WarningIJEEERS0_NS_12DiagnosticIdENS_14SourceLocationEDpOT_:
-   55|  2.18k|    {
-   56|  2.18k|        m_Diagnostics.emplace_back(Diagnostic{
-   57|  2.18k|                id, DiagnosticLevel::Warning, location,
-   58|  2.18k|                fmt::format(fmt::runtime(DiagnosticIdMessage(id)), phi::forward<ArgsT>(args)...)});
+   55|  2.83k|    {
+   56|  2.83k|        m_Diagnostics.emplace_back(Diagnostic{
+   57|  2.83k|                id, DiagnosticLevel::Warning, location,
+   58|  2.83k|                fmt::format(fmt::runtime(DiagnosticIdMessage(id)), phi::forward<ArgsT>(args)...)});
    59|       |
-   60|  2.18k|        return *this;
-   61|  2.18k|    }
+   60|  2.83k|        return *this;
+   61|  2.83k|    }
 
 _ZN10OpenAutoIt19DiagnosticIdMessageENS_12DiagnosticIdE:
-   87|  2.18k|{
-   88|  2.18k|    PHI_ASSERT(id != DiagnosticId::None);
+   87|  2.83k|{
+   88|  2.83k|    PHI_ASSERT(id != DiagnosticId::None);
    89|       |
-   90|  2.18k|    switch (id)
-   91|  2.18k|    {
+   90|  2.83k|    switch (id)
+   91|  2.83k|    {
    92|      0|#define OPENAUTOIT_ENUM_DIAGNOSTIC_IDS_IMPL(EnumName, FlagName, DiagnosticMessage)                 \
    93|      0|    case DiagnosticId::EnumName: {                                                                 \
    94|      0|        PHI_ASSERT(phi::string_length(DiagnosticMessage) != 0u);                                   \
@@ -365,30 +365,30 @@ _ZN10OpenAutoIt19DiagnosticIdMessageENS_12DiagnosticIdE:
   |  |  ------------------
   |  |  |  |   93|      0|    case DiagnosticId::EnumName: {                                                                 \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (93:5): [True: 0, False: 2.18k]
+  |  |  |  |  |  Branch (93:5): [True: 0, False: 2.83k]
   |  |  |  |  ------------------
   |  |  |  |   94|      0|        PHI_ASSERT(phi::string_length(DiagnosticMessage) != 0u);                                   \
   |  |  |  |   95|      0|        return DiagnosticMessage;                                                                  \
   |  |  |  |   96|      0|    }
   |  |  ------------------
   |  |   13|      0|    /* Lexer warnings */                                                                           \
-  |  |   14|  2.18k|    OPENAUTOIT_ENUM_DIAGNOSTIC_IDS_IMPL(NullCharacter, "-Wnull-character",                         \
+  |  |   14|  2.83k|    OPENAUTOIT_ENUM_DIAGNOSTIC_IDS_IMPL(NullCharacter, "-Wnull-character",                         \
   |  |  ------------------
-  |  |  |  |   93|  2.18k|    case DiagnosticId::EnumName: {                                                                 \
+  |  |  |  |   93|  2.83k|    case DiagnosticId::EnumName: {                                                                 \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (93:5): [True: 2.18k, False: 0]
+  |  |  |  |  |  Branch (93:5): [True: 2.83k, False: 0]
   |  |  |  |  ------------------
-  |  |  |  |   94|  2.18k|        PHI_ASSERT(phi::string_length(DiagnosticMessage) != 0u);                                   \
-  |  |  |  |   95|  2.18k|        return DiagnosticMessage;                                                                  \
-  |  |  |  |   96|  2.18k|    }
+  |  |  |  |   94|  2.83k|        PHI_ASSERT(phi::string_length(DiagnosticMessage) != 0u);                                   \
+  |  |  |  |   95|  2.83k|        return DiagnosticMessage;                                                                  \
+  |  |  |  |   96|  2.83k|    }
   |  |  ------------------
-  |  |   15|  2.18k|                                        "null character ignored")                                  \
-  |  |   16|  2.18k|    /* Lexer errors */                                                                             \
-  |  |   17|  2.18k|    OPENAUTOIT_ENUM_DIAGNOSTIC_IDS_IMPL(InvalidFloatLiteral, "",                                   \
+  |  |   15|  2.83k|                                        "null character ignored")                                  \
+  |  |   16|  2.83k|    /* Lexer errors */                                                                             \
+  |  |   17|  2.83k|    OPENAUTOIT_ENUM_DIAGNOSTIC_IDS_IMPL(InvalidFloatLiteral, "",                                   \
   |  |  ------------------
   |  |  |  |   93|      0|    case DiagnosticId::EnumName: {                                                                 \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (93:5): [True: 0, False: 2.18k]
+  |  |  |  |  |  Branch (93:5): [True: 0, False: 2.83k]
   |  |  |  |  ------------------
   |  |  |  |   94|      0|        PHI_ASSERT(phi::string_length(DiagnosticMessage) != 0u);                                   \
   |  |  |  |   95|      0|        return DiagnosticMessage;                                                                  \
@@ -399,7 +399,7 @@ _ZN10OpenAutoIt19DiagnosticIdMessageENS_12DiagnosticIdE:
   |  |  ------------------
   |  |  |  |   93|      0|    case DiagnosticId::EnumName: {                                                                 \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (93:5): [True: 0, False: 2.18k]
+  |  |  |  |  |  Branch (93:5): [True: 0, False: 2.83k]
   |  |  |  |  ------------------
   |  |  |  |   94|      0|        PHI_ASSERT(phi::string_length(DiagnosticMessage) != 0u);                                   \
   |  |  |  |   95|      0|        return DiagnosticMessage;                                                                  \
@@ -411,7 +411,7 @@ _ZN10OpenAutoIt19DiagnosticIdMessageENS_12DiagnosticIdE:
   |  |  ------------------
   |  |  |  |   93|      0|    case DiagnosticId::EnumName: {                                                                 \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (93:5): [True: 0, False: 2.18k]
+  |  |  |  |  |  Branch (93:5): [True: 0, False: 2.83k]
   |  |  |  |  ------------------
   |  |  |  |   94|      0|        PHI_ASSERT(phi::string_length(DiagnosticMessage) != 0u);                                   \
   |  |  |  |   95|      0|        return DiagnosticMessage;                                                                  \
@@ -422,7 +422,7 @@ _ZN10OpenAutoIt19DiagnosticIdMessageENS_12DiagnosticIdE:
   |  |  ------------------
   |  |  |  |   93|      0|    case DiagnosticId::EnumName: {                                                                 \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (93:5): [True: 0, False: 2.18k]
+  |  |  |  |  |  Branch (93:5): [True: 0, False: 2.83k]
   |  |  |  |  ------------------
   |  |  |  |   94|      0|        PHI_ASSERT(phi::string_length(DiagnosticMessage) != 0u);                                   \
   |  |  |  |   95|      0|        return DiagnosticMessage;                                                                  \
@@ -432,7 +432,7 @@ _ZN10OpenAutoIt19DiagnosticIdMessageENS_12DiagnosticIdE:
   |  |  ------------------
   |  |  |  |   93|      0|    case DiagnosticId::EnumName: {                                                                 \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (93:5): [True: 0, False: 2.18k]
+  |  |  |  |  |  Branch (93:5): [True: 0, False: 2.83k]
   |  |  |  |  ------------------
   |  |  |  |   94|      0|        PHI_ASSERT(phi::string_length(DiagnosticMessage) != 0u);                                   \
   |  |  |  |   95|      0|        return DiagnosticMessage;                                                                  \
@@ -444,7 +444,7 @@ _ZN10OpenAutoIt19DiagnosticIdMessageENS_12DiagnosticIdE:
   |  |  ------------------
   |  |  |  |   93|      0|    case DiagnosticId::EnumName: {                                                                 \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (93:5): [True: 0, False: 2.18k]
+  |  |  |  |  |  Branch (93:5): [True: 0, False: 2.83k]
   |  |  |  |  ------------------
   |  |  |  |   94|      0|        PHI_ASSERT(phi::string_length(DiagnosticMessage) != 0u);                                   \
   |  |  |  |   95|      0|        return DiagnosticMessage;                                                                  \
@@ -454,7 +454,7 @@ _ZN10OpenAutoIt19DiagnosticIdMessageENS_12DiagnosticIdE:
   |  |  ------------------
   |  |  |  |   93|      0|    case DiagnosticId::EnumName: {                                                                 \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (93:5): [True: 0, False: 2.18k]
+  |  |  |  |  |  Branch (93:5): [True: 0, False: 2.83k]
   |  |  |  |  ------------------
   |  |  |  |   94|      0|        PHI_ASSERT(phi::string_length(DiagnosticMessage) != 0u);                                   \
   |  |  |  |   95|      0|        return DiagnosticMessage;                                                                  \
@@ -464,7 +464,7 @@ _ZN10OpenAutoIt19DiagnosticIdMessageENS_12DiagnosticIdE:
   |  |  ------------------
   |  |  |  |   93|      0|    case DiagnosticId::EnumName: {                                                                 \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (93:5): [True: 0, False: 2.18k]
+  |  |  |  |  |  Branch (93:5): [True: 0, False: 2.83k]
   |  |  |  |  ------------------
   |  |  |  |   94|      0|        PHI_ASSERT(phi::string_length(DiagnosticMessage) != 0u);                                   \
   |  |  |  |   95|      0|        return DiagnosticMessage;                                                                  \
@@ -474,7 +474,7 @@ _ZN10OpenAutoIt19DiagnosticIdMessageENS_12DiagnosticIdE:
   |  |  ------------------
   |  |  |  |   93|      0|    case DiagnosticId::EnumName: {                                                                 \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (93:5): [True: 0, False: 2.18k]
+  |  |  |  |  |  Branch (93:5): [True: 0, False: 2.83k]
   |  |  |  |  ------------------
   |  |  |  |   94|      0|        PHI_ASSERT(phi::string_length(DiagnosticMessage) != 0u);                                   \
   |  |  |  |   95|      0|        return DiagnosticMessage;                                                                  \
@@ -487,11 +487,11 @@ _ZN10OpenAutoIt19DiagnosticIdMessageENS_12DiagnosticIdE:
   101|       |
   102|      0|        default:
   ------------------
-  |  Branch (102:9): [True: 0, False: 2.18k]
+  |  Branch (102:9): [True: 0, False: 2.83k]
   ------------------
   103|      0|            PHI_ASSERT_NOT_REACHED();
-  104|  2.18k|    }
-  105|  2.18k|}
+  104|  2.83k|    }
+  105|  2.83k|}
 
 _ZN10OpenAutoIt5Lexer14ConstructTokenENS_9TokenKindE:
    45|  2.94k|    {
@@ -508,182 +508,182 @@ _ZN10OpenAutoIt5Lexer14ConstructTokenENS_9TokenKindE:
    56|  2.94k|        return token;
    57|  2.94k|    }
 _ZN10OpenAutoIt5Lexer14ConstructTokenENS_9TokenKindEPKc:
-   60|  27.9k|    {
-   61|  27.9k|        Token token{kind, TokenText(token_begin), CurrentSourceLocation()};
+   60|  22.0k|    {
+   61|  22.0k|        Token token{kind, TokenText(token_begin), CurrentSourceLocation()};
    62|       |
    63|       |        // Consume the amount of characters that make up our new token
-   64|  27.9k|        m_Column += static_cast<typename phi::usize::value_type>(m_Iterator - token_begin);
+   64|  22.0k|        m_Column += static_cast<typename phi::usize::value_type>(m_Iterator - token_begin);
    65|       |
-   66|  27.9k|        return token;
-   67|  27.9k|    }
+   66|  22.0k|        return token;
+   67|  22.0k|    }
 _ZN10OpenAutoIt5Lexer9TokenTextEPKc:
-   70|  68.5k|    {
-   71|  68.5k|        return m_Source.substring_view(token_begin, m_Iterator);
-   72|  68.5k|    }
+   70|  50.2k|    {
+   71|  50.2k|        return m_Source.substring_view(token_begin, m_Iterator);
+   72|  50.2k|    }
 _ZNK10OpenAutoIt5Lexer21CurrentSourceLocationEv:
-   75|  33.0k|    {
-   76|  33.0k|        return BuildSourceLocation(m_LineNumber, m_Column);
-   77|  33.0k|    }
+   75|  27.8k|    {
+   76|  27.8k|        return BuildSourceLocation(m_LineNumber, m_Column);
+   77|  27.8k|    }
 _ZNK10OpenAutoIt5Lexer19BuildSourceLocationEN3phi7integerImEES3_:
-   81|  37.2k|    {
-   82|  37.2k|        return {m_SourceFile, line_number, column};
-   83|  37.2k|    }
+   81|  30.2k|    {
+   82|  30.2k|        return {m_SourceFile, line_number, column};
+   83|  30.2k|    }
 
 _ZN10OpenAutoIt5TokenC2ENS_9TokenKindEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEENS_14SourceLocationE:
-   27|  35.0k|    {}
+   27|  27.4k|    {}
 
 _ZN10OpenAutoIt11TokenStream12emplace_backIJRNS_5TokenEEEEvDpOT_:
-   20|  35.0k|    {
+   20|  27.4k|    {
    21|       |#if defined(PHI_DEBUG)
    22|       |        PHI_ASSERT(!m_Finalized);
    23|       |#endif
    24|       |
-   25|  35.0k|        m_Tokens.emplace_back(std::forward<ArgsT>(args)...);
-   26|  35.0k|    }
+   25|  27.4k|        m_Tokens.emplace_back(std::forward<ArgsT>(args)...);
+   26|  27.4k|    }
 
 _ZN10OpenAutoIt10DiagnosticC2ENS_12DiagnosticIdENS_15DiagnosticLevelENS_14SourceLocationEONSt3__112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEE:
-   14|  2.18k|{}
+   14|  2.83k|{}
 _ZNK10OpenAutoIt10Diagnostic6IsNoteEv:
-   42|  2.18k|{
-   43|  2.18k|    return m_Level == DiagnosticLevel::Note;
-   44|  2.18k|}
+   42|  2.83k|{
+   43|  2.83k|    return m_Level == DiagnosticLevel::Note;
+   44|  2.83k|}
 _ZNK10OpenAutoIt10Diagnostic9IsWarningEv:
-   47|  2.18k|{
-   48|  2.18k|    return m_Level == DiagnosticLevel::Warning;
-   49|  2.18k|}
+   47|  2.83k|{
+   48|  2.83k|    return m_Level == DiagnosticLevel::Warning;
+   49|  2.83k|}
 _ZNK10OpenAutoIt10Diagnostic7IsErrorEv:
-   52|  2.18k|{
-   53|  2.18k|    return m_Level == DiagnosticLevel::Error;
-   54|  2.18k|}
+   52|  2.83k|{
+   53|  2.83k|    return m_Level == DiagnosticLevel::Error;
+   54|  2.83k|}
 _ZNK10OpenAutoIt10Diagnostic12IsFatalErrorEv:
-   57|  4.37k|{
-   58|  4.37k|    return m_Level == DiagnosticLevel::FatalError;
-   59|  4.37k|}
+   57|  5.67k|{
+   58|  5.67k|    return m_Level == DiagnosticLevel::FatalError;
+   59|  5.67k|}
 _ZNK10OpenAutoIt10Diagnostic14IsErrorOrFatalEv:
-   62|  2.18k|{
-   63|  2.18k|    return IsError() || IsFatalError();
+   62|  2.83k|{
+   63|  2.83k|    return IsError() || IsFatalError();
   ------------------
-  |  Branch (63:12): [True: 0, False: 2.18k]
-  |  Branch (63:25): [True: 0, False: 2.18k]
+  |  Branch (63:12): [True: 0, False: 2.83k]
+  |  Branch (63:25): [True: 0, False: 2.83k]
   ------------------
-   64|  2.18k|}
+   64|  2.83k|}
 
 _ZN10OpenAutoIt17DiagnosticBuilderC2EN3phi21not_null_observer_ptrINS_16DiagnosticEngineEEE:
-   11|  2.18k|{}
+   11|  2.83k|{}
 _ZN10OpenAutoIt17DiagnosticBuilderD2Ev:
-   14|  2.18k|{
-   15|  2.18k|    for (auto& diagnostic : m_Diagnostics)
+   14|  2.83k|{
+   15|  2.83k|    for (auto& diagnostic : m_Diagnostics)
   ------------------
-  |  Branch (15:27): [True: 2.18k, False: 2.18k]
+  |  Branch (15:27): [True: 2.83k, False: 2.83k]
   ------------------
-   16|  2.18k|    {
-   17|  2.18k|        m_DiagnosticEngine->Report(diagnostic);
-   18|  2.18k|    }
-   19|  2.18k|}
+   16|  2.83k|    {
+   17|  2.83k|        m_DiagnosticEngine->Report(diagnostic);
+   18|  2.83k|    }
+   19|  2.83k|}
 
 _ZN10OpenAutoIt16DiagnosticEngineC2Ev:
-   12|  1.29k|{}
+   12|  1.24k|{}
 _ZN10OpenAutoIt16DiagnosticEngine6ReportENS_10DiagnosticE:
-   69|  2.18k|{
-   70|  2.18k|    PHI_ASSERT(!diagnostic.IsNote());
+   69|  2.83k|{
+   70|  2.83k|    PHI_ASSERT(!diagnostic.IsNote());
    71|       |
-   72|  2.18k|    if (m_IgnoreAllWarnings)
+   72|  2.83k|    if (m_IgnoreAllWarnings)
   ------------------
-  |  Branch (72:9): [True: 0, False: 2.18k]
+  |  Branch (72:9): [True: 0, False: 2.83k]
   ------------------
    73|      0|    {
    74|      0|        diagnostic.IgnoreWarning();
    75|      0|    }
    76|       |
-   77|  2.18k|    if (m_WarningsAsError)
+   77|  2.83k|    if (m_WarningsAsError)
   ------------------
-  |  Branch (77:9): [True: 0, False: 2.18k]
+  |  Branch (77:9): [True: 0, False: 2.83k]
   ------------------
    78|      0|    {
    79|      0|        diagnostic.UpgradeWarningToError();
    80|      0|    }
    81|       |
-   82|  2.18k|    if (diagnostic.IsErrorOrFatal())
+   82|  2.83k|    if (diagnostic.IsErrorOrFatal())
   ------------------
-  |  Branch (82:9): [True: 0, False: 2.18k]
+  |  Branch (82:9): [True: 0, False: 2.83k]
   ------------------
    83|      0|    {
    84|      0|        m_ErrorOccurred = true;
    85|      0|        ++m_NumberOfErrors;
    86|      0|    }
    87|       |
-   88|  2.18k|    if (diagnostic.IsFatalError())
+   88|  2.83k|    if (diagnostic.IsFatalError())
   ------------------
-  |  Branch (88:9): [True: 0, False: 2.18k]
+  |  Branch (88:9): [True: 0, False: 2.83k]
   ------------------
    89|      0|    {
    90|      0|        m_FatalErrorOccurred = true;
    91|      0|    }
    92|       |
-   93|  2.18k|    if (diagnostic.IsWarning())
+   93|  2.83k|    if (diagnostic.IsWarning())
   ------------------
-  |  Branch (93:9): [True: 2.18k, False: 0]
+  |  Branch (93:9): [True: 2.83k, False: 0]
   ------------------
-   94|  2.18k|    {
-   95|  2.18k|        ++m_NumberOfWarnings;
-   96|  2.18k|    }
+   94|  2.83k|    {
+   95|  2.83k|        ++m_NumberOfWarnings;
+   96|  2.83k|    }
    97|       |
-   98|  2.18k|    if (m_Consumer)
+   98|  2.83k|    if (m_Consumer)
   ------------------
-  |  Branch (98:9): [True: 0, False: 2.18k]
+  |  Branch (98:9): [True: 0, False: 2.83k]
   ------------------
    99|      0|    {
   100|      0|        m_Consumer->Report(diagnostic);
   101|      0|    }
-  102|  2.18k|}
+  102|  2.83k|}
 
 _Z12lookup_macroN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
-  160|  1.65k|{
-  161|  1.65k|    static constexpr auto map =
-  162|  1.65k|            LookUpMap<phi::string_view, OpenAutoIt::TokenKind, MacroValues.size()>(
-  163|  1.65k|                    MacroValues, OpenAutoIt::TokenKind::NotAToken);
+  160|  1.82k|{
+  161|  1.82k|    static constexpr auto map =
+  162|  1.82k|            LookUpMap<phi::string_view, OpenAutoIt::TokenKind, MacroValues.size()>(
+  163|  1.82k|                    MacroValues, OpenAutoIt::TokenKind::NotAToken);
   164|       |
-  165|  1.65k|    std::string str{token.begin(), token.end()};
-  166|  1.65k|    std::transform(str.begin(), str.end(), str.begin(), phi::to_lower_case);
+  165|  1.82k|    std::string str{token.begin(), token.end()};
+  166|  1.82k|    std::transform(str.begin(), str.end(), str.begin(), phi::to_lower_case);
   167|       |
-  168|  1.65k|    return map.at(phi::string_view(str.c_str(), str.size()));
-  169|  1.65k|}
+  168|  1.82k|    return map.at(phi::string_view(str.c_str(), str.size()));
+  169|  1.82k|}
 _Z20lookup_pre_processorN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
-  186|  26.2k|{
-  187|  26.2k|    static constexpr auto map =
-  188|  26.2k|            LookUpMap<phi::string_view, OpenAutoIt::TokenKind, PreProcessorValues.size()>(
-  189|  26.2k|                    PreProcessorValues, OpenAutoIt::TokenKind::NotAToken);
+  186|  16.9k|{
+  187|  16.9k|    static constexpr auto map =
+  188|  16.9k|            LookUpMap<phi::string_view, OpenAutoIt::TokenKind, PreProcessorValues.size()>(
+  189|  16.9k|                    PreProcessorValues, OpenAutoIt::TokenKind::NotAToken);
   190|       |
-  191|  26.2k|    std::string str{token.begin(), token.end()};
-  192|  26.2k|    std::transform(str.begin(), str.end(), str.begin(), phi::to_lower_case);
+  191|  16.9k|    std::string str{token.begin(), token.end()};
+  192|  16.9k|    std::transform(str.begin(), str.end(), str.begin(), phi::to_lower_case);
   193|       |
-  194|  26.2k|    return map.at(phi::string_view(str.c_str(), str.size()));
-  195|  26.2k|}
+  194|  16.9k|    return map.at(phi::string_view(str.c_str(), str.size()));
+  195|  16.9k|}
 _Z17lookup_identifierN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
-  662|  2.11k|{
-  663|  2.11k|    static constexpr auto keyword_map =
-  664|  2.11k|            LookUpMap<phi::string_view, OpenAutoIt::TokenKind, KeyWordsValues.size()>(
-  665|  2.11k|                    KeyWordsValues, OpenAutoIt::TokenKind::FunctionIdentifier);
-  666|  2.11k|    static constexpr auto builtin_map =
-  667|  2.11k|            LookUpMap<phi::string_view, OpenAutoIt::TokenKind, BuiltInValues.size()>(
-  668|  2.11k|                    BuiltInValues, OpenAutoIt::TokenKind::FunctionIdentifier);
+  662|  2.27k|{
+  663|  2.27k|    static constexpr auto keyword_map =
+  664|  2.27k|            LookUpMap<phi::string_view, OpenAutoIt::TokenKind, KeyWordsValues.size()>(
+  665|  2.27k|                    KeyWordsValues, OpenAutoIt::TokenKind::FunctionIdentifier);
+  666|  2.27k|    static constexpr auto builtin_map =
+  667|  2.27k|            LookUpMap<phi::string_view, OpenAutoIt::TokenKind, BuiltInValues.size()>(
+  668|  2.27k|                    BuiltInValues, OpenAutoIt::TokenKind::FunctionIdentifier);
   669|       |
-  670|  2.11k|    std::string str{token.begin(), token.end()};
-  671|  2.11k|    std::transform(str.begin(), str.end(), str.begin(), phi::to_lower_case);
+  670|  2.27k|    std::string str{token.begin(), token.end()};
+  671|  2.27k|    std::transform(str.begin(), str.end(), str.begin(), phi::to_lower_case);
   672|       |
-  673|  2.11k|    phi::string_view string = phi::string_view(str.c_str(), str.size());
+  673|  2.27k|    phi::string_view string = phi::string_view(str.c_str(), str.size());
   674|       |
-  675|  2.11k|    const OpenAutoIt::TokenKind keyword = keyword_map.at(string);
-  676|  2.11k|    if (keyword == OpenAutoIt::TokenKind::FunctionIdentifier)
+  675|  2.27k|    const OpenAutoIt::TokenKind keyword = keyword_map.at(string);
+  676|  2.27k|    if (keyword == OpenAutoIt::TokenKind::FunctionIdentifier)
   ------------------
-  |  Branch (676:9): [True: 1.91k, False: 199]
+  |  Branch (676:9): [True: 2.07k, False: 199]
   ------------------
-  677|  1.91k|    {
-  678|  1.91k|        return builtin_map.at(string);
-  679|  1.91k|    }
+  677|  2.07k|    {
+  678|  2.07k|        return builtin_map.at(string);
+  679|  2.07k|    }
   680|       |
   681|    199|    return keyword;
-  682|  2.11k|}
+  682|  2.27k|}
 _Z15lookup_operatorN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   707|  3.19k|{
   708|  3.19k|    static constexpr auto map =
@@ -693,154 +693,154 @@ _Z15lookup_operatorN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   712|  3.19k|    return map.at(token);
   713|  3.19k|}
 _ZN10OpenAutoIt5LexerC2EN3phi21not_null_observer_ptrINS_16DiagnosticEngineEEE:
-  778|  1.29k|{}
+  778|  1.24k|{}
 _ZN10OpenAutoIt5Lexer5ResetEv:
-  781|  1.29k|{
-  782|  1.29k|    m_Iterator = m_Source.begin();
+  781|  1.24k|{
+  782|  1.24k|    m_Iterator = m_Source.begin();
   783|       |
-  784|  1.29k|    m_InsideMultiLineComment = false;
+  784|  1.24k|    m_InsideMultiLineComment = false;
   785|       |
-  786|  1.29k|    m_LineNumber = 1u;
-  787|  1.29k|    m_Column     = 1u;
-  788|  1.29k|}
+  786|  1.24k|    m_LineNumber = 1u;
+  787|  1.24k|    m_Column     = 1u;
+  788|  1.24k|}
 _ZNK10OpenAutoIt5Lexer10IsFinishedEv:
-  791|   313k|{
-  792|   313k|    return m_Iterator == m_Source.end();
-  793|   313k|}
+  791|   269k|{
+  792|   269k|    return m_Iterator == m_Source.end();
+  793|   269k|}
 _ZN10OpenAutoIt5Lexer12GetNextTokenEv:
-  796|  35.3k|{
-  797|  41.4k|    while (!IsFinished())
+  796|  27.6k|{
+  797|  34.6k|    while (!IsFinished())
   ------------------
-  |  Branch (797:12): [True: 41.2k, False: 271]
+  |  Branch (797:12): [True: 34.3k, False: 247]
   ------------------
-  798|  41.2k|    {
-  799|  41.2k|        char current_character = *m_Iterator;
+  798|  34.3k|    {
+  799|  34.3k|        char current_character = *m_Iterator;
   800|       |
   801|       |        /* null character */
   802|       |
-  803|  41.2k|        if (current_character == '\0')
+  803|  34.3k|        if (current_character == '\0')
   ------------------
-  |  Branch (803:13): [True: 2.18k, False: 39.0k]
+  |  Branch (803:13): [True: 2.83k, False: 31.5k]
   ------------------
-  804|  2.18k|        {
-  805|  2.18k|            Diag().Warning(DiagnosticId::NullCharacter, CurrentSourceLocation());
+  804|  2.83k|        {
+  805|  2.83k|            Diag().Warning(DiagnosticId::NullCharacter, CurrentSourceLocation());
   806|       |
-  807|  2.18k|            SkipCurrentCharacter();
-  808|  2.18k|        }
+  807|  2.83k|            SkipCurrentCharacter();
+  808|  2.83k|        }
   809|       |
   810|       |        /* Multiline comments */
   811|       |
-  812|  39.0k|        else if (m_InsideMultiLineComment)
+  812|  31.5k|        else if (m_InsideMultiLineComment)
   ------------------
-  |  Branch (812:18): [True: 4.27k, False: 34.7k]
+  |  Branch (812:18): [True: 2.52k, False: 29.0k]
   ------------------
-  813|  4.27k|        {
-  814|  4.27k|            iterator       begin_of_multiline_comment            = m_Iterator;
-  815|  4.27k|            const phi::u64 beginning_line_of_multiline_comment   = m_LineNumber;
-  816|  4.27k|            const phi::u64 beginning_column_of_multiline_comment = m_Column;
+  813|  2.52k|        {
+  814|  2.52k|            iterator       begin_of_multiline_comment            = m_Iterator;
+  815|  2.52k|            const phi::u64 beginning_line_of_multiline_comment   = m_LineNumber;
+  816|  2.52k|            const phi::u64 beginning_column_of_multiline_comment = m_Column;
   817|       |
-  818|  8.40k|            while (!IsFinished())
+  818|  5.07k|            while (!IsFinished())
   ------------------
-  |  Branch (818:20): [True: 8.28k, False: 120]
+  |  Branch (818:20): [True: 4.98k, False: 95]
   ------------------
-  819|  8.28k|            {
-  820|  8.28k|                current_character = *m_Iterator;
+  819|  4.98k|            {
+  820|  4.98k|                current_character = *m_Iterator;
   821|       |
   822|       |                // Check for end comment multiline
-  823|  8.28k|                if (current_character == '#')
+  823|  4.98k|                if (current_character == '#')
   ------------------
-  |  Branch (823:21): [True: 7.57k, False: 718]
+  |  Branch (823:21): [True: 4.51k, False: 471]
   ------------------
-  824|  7.57k|                {
-  825|  7.57k|                    iterator begin_of_token = m_Iterator;
-  826|  7.57k|                    ConsumeCurrentCharacter();
+  824|  4.51k|                {
+  825|  4.51k|                    iterator begin_of_token = m_Iterator;
+  826|  4.51k|                    ConsumeCurrentCharacter();
   827|       |
-  828|  27.4k|                    while (!IsFinished())
+  828|  17.6k|                    while (!IsFinished())
   ------------------
-  |  Branch (828:28): [True: 27.2k, False: 165]
+  |  Branch (828:28): [True: 17.5k, False: 136]
   ------------------
-  829|  27.2k|                    {
-  830|  27.2k|                        current_character = *m_Iterator;
+  829|  17.5k|                    {
+  830|  17.5k|                        current_character = *m_Iterator;
   831|       |
-  832|  27.2k|                        if (is_valid_pp_char(current_character))
+  832|  17.5k|                        if (is_valid_pp_char(current_character))
   ------------------
-  |  Branch (832:29): [True: 19.8k, False: 7.40k]
+  |  Branch (832:29): [True: 13.1k, False: 4.37k]
   ------------------
-  833|  19.8k|                        {
-  834|  19.8k|                            ConsumeCurrentCharacter();
-  835|  19.8k|                            continue;
-  836|  19.8k|                        }
+  833|  13.1k|                        {
+  834|  13.1k|                            ConsumeCurrentCharacter();
+  835|  13.1k|                            continue;
+  836|  13.1k|                        }
   837|       |
-  838|  7.40k|                        break;
-  839|  27.2k|                    }
+  838|  4.37k|                        break;
+  839|  17.5k|                    }
   840|       |
-  841|  7.57k|                    const TokenKind pre_processor_token_kind =
-  842|  7.57k|                            lookup_pre_processor(TokenText(begin_of_token));
+  841|  4.51k|                    const TokenKind pre_processor_token_kind =
+  842|  4.51k|                            lookup_pre_processor(TokenText(begin_of_token));
   843|       |
-  844|  7.57k|                    if (pre_processor_token_kind == TokenKind::PP_CommentsEnd)
+  844|  4.51k|                    if (pre_processor_token_kind == TokenKind::PP_CommentsEnd)
   ------------------
-  |  Branch (844:25): [True: 4.15k, False: 3.41k]
+  |  Branch (844:25): [True: 2.42k, False: 2.08k]
   ------------------
-  845|  4.15k|                    {
-  846|  4.15k|                        m_InsideMultiLineComment = false;
+  845|  2.42k|                    {
+  846|  2.42k|                        m_InsideMultiLineComment = false;
   847|       |
   848|       |                        // Go back the size of the parsed end token so we can reparse it in the normal pre processor parser
-  849|  4.15k|                        m_Iterator -= TokenText(begin_of_token).length().unsafe();
+  849|  2.42k|                        m_Iterator -= TokenText(begin_of_token).length().unsafe();
   850|       |
-  851|  4.15k|                        Token token{TokenKind::Comment, TokenText(begin_of_multiline_comment),
-  852|  4.15k|                                    BuildSourceLocation(beginning_line_of_multiline_comment,
-  853|  4.15k|                                                        beginning_column_of_multiline_comment)};
+  851|  2.42k|                        Token token{TokenKind::Comment, TokenText(begin_of_multiline_comment),
+  852|  2.42k|                                    BuildSourceLocation(beginning_line_of_multiline_comment,
+  853|  2.42k|                                                        beginning_column_of_multiline_comment)};
   854|       |
-  855|  4.15k|                        return token;
-  856|  4.15k|                    }
-  857|  7.57k|                }
-  858|    718|                else if (current_character == '\n')
+  855|  2.42k|                        return token;
+  856|  2.42k|                    }
+  857|  4.51k|                }
+  858|    471|                else if (current_character == '\n')
   ------------------
-  |  Branch (858:26): [True: 195, False: 523]
+  |  Branch (858:26): [True: 195, False: 276]
   ------------------
   859|    195|                {
   860|    195|                    ConsumeCurrentCharacter();
   861|    195|                    AdvanceToNextLine();
   862|    195|                }
-  863|    523|                else
-  864|    523|                {
+  863|    276|                else
+  864|    276|                {
   865|       |                    // Otherwise simply consume the character
-  866|    523|                    ConsumeCurrentCharacter();
-  867|    523|                    m_Column += 1u;
-  868|    523|                }
-  869|  8.28k|            }
-  870|  4.27k|        }
+  866|    276|                    ConsumeCurrentCharacter();
+  867|    276|                    m_Column += 1u;
+  868|    276|                }
+  869|  4.98k|            }
+  870|  2.52k|        }
   871|       |
   872|       |        /* Skip characters */
   873|       |
-  874|  34.7k|        else if (is_skip_character(current_character))
+  874|  29.0k|        else if (is_skip_character(current_character))
   ------------------
-  |  Branch (874:18): [True: 1.12k, False: 33.6k]
+  |  Branch (874:18): [True: 1.18k, False: 27.8k]
   ------------------
-  875|  1.12k|        {
-  876|  1.12k|            SkipCurrentCharacter();
-  877|  1.12k|        }
+  875|  1.18k|        {
+  876|  1.18k|            SkipCurrentCharacter();
+  877|  1.18k|        }
   878|       |
   879|       |        /* New Lines */
   880|       |
-  881|  33.6k|        else if (current_character == '\n')
+  881|  27.8k|        else if (current_character == '\n')
   ------------------
-  |  Branch (881:18): [True: 689, False: 32.9k]
+  |  Branch (881:18): [True: 674, False: 27.1k]
   ------------------
-  882|    689|        {
-  883|    689|            Token new_line_token = ConstructToken(TokenKind::NewLine);
+  882|    674|        {
+  883|    674|            Token new_line_token = ConstructToken(TokenKind::NewLine);
   884|       |
-  885|    689|            ConsumeCurrentCharacter();
-  886|    689|            AdvanceToNextLine();
+  885|    674|            ConsumeCurrentCharacter();
+  886|    674|            AdvanceToNextLine();
   887|       |
-  888|    689|            return new_line_token;
-  889|    689|        }
+  888|    674|            return new_line_token;
+  889|    674|        }
   890|       |
   891|       |        /* Comment */
   892|       |
-  893|  32.9k|        else if (current_character == ';')
+  893|  27.1k|        else if (current_character == ';')
   ------------------
-  |  Branch (893:18): [True: 204, False: 32.7k]
+  |  Branch (893:18): [True: 204, False: 26.9k]
   ------------------
   894|    204|        {
   895|    204|            iterator begin_of_token = m_Iterator;
@@ -870,42 +870,42 @@ _ZN10OpenAutoIt5Lexer12GetNextTokenEv:
   913|       |
   914|       |        /* Macros */
   915|       |
-  916|  32.7k|        else if (current_character == '@')
+  916|  26.9k|        else if (current_character == '@')
   ------------------
-  |  Branch (916:18): [True: 1.65k, False: 31.0k]
+  |  Branch (916:18): [True: 1.82k, False: 25.1k]
   ------------------
-  917|  1.65k|        {
-  918|  1.65k|            iterator begin_of_token = m_Iterator;
-  919|  1.65k|            ConsumeCurrentCharacter();
+  917|  1.82k|        {
+  918|  1.82k|            iterator begin_of_token = m_Iterator;
+  919|  1.82k|            ConsumeCurrentCharacter();
   920|       |
-  921|  36.4k|            while (!IsFinished())
+  921|  39.4k|            while (!IsFinished())
   ------------------
-  |  Branch (921:20): [True: 36.3k, False: 123]
+  |  Branch (921:20): [True: 39.3k, False: 124]
   ------------------
-  922|  36.3k|            {
-  923|  36.3k|                current_character = *m_Iterator;
+  922|  39.3k|            {
+  923|  39.3k|                current_character = *m_Iterator;
   924|       |
-  925|  36.3k|                if (is_valid_identifier_char(current_character))
+  925|  39.3k|                if (is_valid_identifier_char(current_character))
   ------------------
-  |  Branch (925:21): [True: 34.8k, False: 1.53k]
+  |  Branch (925:21): [True: 37.6k, False: 1.70k]
   ------------------
-  926|  34.8k|                {
-  927|  34.8k|                    ConsumeCurrentCharacter();
-  928|  34.8k|                    continue;
-  929|  34.8k|                }
+  926|  37.6k|                {
+  927|  37.6k|                    ConsumeCurrentCharacter();
+  928|  37.6k|                    continue;
+  929|  37.6k|                }
   930|       |
-  931|  1.53k|                break;
-  932|  36.3k|            }
+  931|  1.70k|                break;
+  932|  39.3k|            }
   933|       |
   934|       |            // Emit token
-  935|  1.65k|            return ConstructToken(lookup_macro(TokenText(begin_of_token)), begin_of_token);
-  936|  1.65k|        }
+  935|  1.82k|            return ConstructToken(lookup_macro(TokenText(begin_of_token)), begin_of_token);
+  936|  1.82k|        }
   937|       |
   938|       |        /* Variable identifier */
   939|       |
-  940|  31.0k|        else if (current_character == '$')
+  940|  25.1k|        else if (current_character == '$')
   ------------------
-  |  Branch (940:18): [True: 453, False: 30.6k]
+  |  Branch (940:18): [True: 453, False: 24.6k]
   ------------------
   941|    453|        {
   942|    453|            iterator     begin_of_token = m_Iterator;
@@ -947,53 +947,53 @@ _ZN10OpenAutoIt5Lexer12GetNextTokenEv:
   969|       |
   970|       |        /* PreProcessor directive */
   971|       |
-  972|  30.6k|        else if (current_character == '#')
+  972|  24.6k|        else if (current_character == '#')
   ------------------
-  |  Branch (972:18): [True: 18.6k, False: 11.9k]
+  |  Branch (972:18): [True: 12.3k, False: 12.2k]
   ------------------
-  973|  18.6k|        {
-  974|  18.6k|            iterator begin_of_token = m_Iterator;
-  975|  18.6k|            ConsumeCurrentCharacter();
+  973|  12.3k|        {
+  974|  12.3k|            iterator begin_of_token = m_Iterator;
+  975|  12.3k|            ConsumeCurrentCharacter();
   976|       |
-  977|   114k|            while (!IsFinished())
+  977|  92.1k|            while (!IsFinished())
   ------------------
-  |  Branch (977:20): [True: 114k, False: 382]
+  |  Branch (977:20): [True: 91.8k, False: 324]
   ------------------
-  978|   114k|            {
-  979|   114k|                current_character = *m_Iterator;
+  978|  91.8k|            {
+  979|  91.8k|                current_character = *m_Iterator;
   980|       |
-  981|   114k|                if (is_valid_pp_char(current_character))
+  981|  91.8k|                if (is_valid_pp_char(current_character))
   ------------------
-  |  Branch (981:21): [True: 95.8k, False: 18.2k]
+  |  Branch (981:21): [True: 79.7k, False: 12.0k]
   ------------------
-  982|  95.8k|                {
-  983|  95.8k|                    ConsumeCurrentCharacter();
-  984|  95.8k|                    continue;
-  985|  95.8k|                }
+  982|  79.7k|                {
+  983|  79.7k|                    ConsumeCurrentCharacter();
+  984|  79.7k|                    continue;
+  985|  79.7k|                }
   986|       |
-  987|  18.2k|                break;
-  988|   114k|            }
+  987|  12.0k|                break;
+  988|  91.8k|            }
   989|       |
   990|       |            // Check for start of multiline comment
-  991|  18.6k|            const TokenKind pre_processor_token_kind =
-  992|  18.6k|                    lookup_pre_processor(TokenText(begin_of_token));
+  991|  12.3k|            const TokenKind pre_processor_token_kind =
+  992|  12.3k|                    lookup_pre_processor(TokenText(begin_of_token));
   993|       |
-  994|  18.6k|            if (pre_processor_token_kind == TokenKind::PP_CommentsStart)
+  994|  12.3k|            if (pre_processor_token_kind == TokenKind::PP_CommentsStart)
   ------------------
-  |  Branch (994:17): [True: 4.28k, False: 14.3k]
+  |  Branch (994:17): [True: 2.52k, False: 9.87k]
   ------------------
-  995|  4.28k|            {
-  996|  4.28k|                m_InsideMultiLineComment = true;
-  997|  4.28k|            }
+  995|  2.52k|            {
+  996|  2.52k|                m_InsideMultiLineComment = true;
+  997|  2.52k|            }
   998|       |
-  999|  18.6k|            return ConstructToken(pre_processor_token_kind, begin_of_token);
- 1000|  18.6k|        }
+  999|  12.3k|            return ConstructToken(pre_processor_token_kind, begin_of_token);
+ 1000|  12.3k|        }
  1001|       |
  1002|       |        /* SingleQuoteStringLiteral */
  1003|       |
- 1004|  11.9k|        else if (current_character == '\'')
+ 1004|  12.2k|        else if (current_character == '\'')
   ------------------
-  |  Branch (1004:18): [True: 203, False: 11.7k]
+  |  Branch (1004:18): [True: 203, False: 12.0k]
   ------------------
  1005|    203|        {
  1006|    203|            iterator     begin_of_token = m_Iterator;
@@ -1031,9 +1031,9 @@ _ZN10OpenAutoIt5Lexer12GetNextTokenEv:
  1029|       |
  1030|       |        /* DoubleQuoteStringLiteral */
  1031|       |
- 1032|  11.7k|        else if (current_character == '\"')
+ 1032|  12.0k|        else if (current_character == '\"')
   ------------------
-  |  Branch (1032:18): [True: 202, False: 11.5k]
+  |  Branch (1032:18): [True: 202, False: 11.8k]
   ------------------
  1033|    202|        {
  1034|    202|            iterator     begin_of_token = m_Iterator;
@@ -1069,32 +1069,32 @@ _ZN10OpenAutoIt5Lexer12GetNextTokenEv:
  1055|       |
  1056|       |        /* Number Literals - IntegerLiteral/FloatLiteral */
  1057|       |
- 1058|  11.5k|        else if (phi::is_digit(current_character) || current_character == '.')
+ 1058|  11.8k|        else if (phi::is_digit(current_character) || current_character == '.')
   ------------------
-  |  Branch (1058:18): [True: 1.12k, False: 10.4k]
-  |  Branch (1058:18): [True: 2.12k, False: 9.46k]
-  |  Branch (1058:54): [True: 999, False: 9.46k]
+  |  Branch (1058:18): [True: 1.13k, False: 10.7k]
+  |  Branch (1058:18): [True: 2.14k, False: 9.74k]
+  |  Branch (1058:54): [True: 1.01k, False: 9.74k]
   ------------------
- 1059|  2.12k|        {
- 1060|  2.12k|            const phi::boolean start_with_zero{current_character == '0'};
- 1061|  2.12k|            phi::boolean       parsing_hex{false};
- 1062|  2.12k|            phi::boolean       parsing_float{current_character == '.'};
+ 1059|  2.14k|        {
+ 1060|  2.14k|            const phi::boolean start_with_zero{current_character == '0'};
+ 1061|  2.14k|            phi::boolean       parsing_hex{false};
+ 1062|  2.14k|            phi::boolean       parsing_float{current_character == '.'};
  1063|       |
- 1064|  2.12k|            iterator begin_of_token = m_Iterator;
- 1065|  2.12k|            ConsumeCurrentCharacter();
+ 1064|  2.14k|            iterator begin_of_token = m_Iterator;
+ 1065|  2.14k|            ConsumeCurrentCharacter();
  1066|       |
- 1067|  4.23k|            while (!IsFinished())
+ 1067|  4.24k|            while (!IsFinished())
   ------------------
-  |  Branch (1067:20): [True: 4.15k, False: 75]
+  |  Branch (1067:20): [True: 4.17k, False: 75]
   ------------------
- 1068|  4.15k|            {
- 1069|  4.15k|                current_character = *m_Iterator;
+ 1068|  4.17k|            {
+ 1069|  4.17k|                current_character = *m_Iterator;
  1070|       |
  1071|       |                // Is the second character
- 1072|  4.15k|                if (m_Iterator - begin_of_token == 1u && start_with_zero)
+ 1072|  4.17k|                if (m_Iterator - begin_of_token == 1u && start_with_zero)
   ------------------
-  |  Branch (1072:21): [True: 2.10k, False: 2.05k]
-  |  Branch (1072:58): [True: 975, False: 1.12k]
+  |  Branch (1072:21): [True: 2.11k, False: 2.05k]
+  |  Branch (1072:58): [True: 975, False: 1.14k]
   ------------------
  1073|    975|                {
  1074|       |                    // Hex character
@@ -1111,9 +1111,9 @@ _ZN10OpenAutoIt5Lexer12GetNextTokenEv:
  1081|    975|                }
  1082|       |
  1083|       |                // Actually parsing
- 1084|  3.57k|                if (parsing_hex)
+ 1084|  3.59k|                if (parsing_hex)
   ------------------
-  |  Branch (1084:21): [True: 1.31k, False: 2.26k]
+  |  Branch (1084:21): [True: 1.31k, False: 2.28k]
   ------------------
  1085|  1.31k|                {
  1086|  1.31k|                    if (parsing_float)
@@ -1136,66 +1136,66 @@ _ZN10OpenAutoIt5Lexer12GetNextTokenEv:
  1097|    757|                        continue;
  1098|    757|                    }
  1099|  1.31k|                }
- 1100|  2.26k|                else if (phi::is_digit(current_character))
+ 1100|  2.28k|                else if (phi::is_digit(current_character))
   ------------------
-  |  Branch (1100:26): [True: 577, False: 1.69k]
+  |  Branch (1100:26): [True: 577, False: 1.70k]
   ------------------
  1101|    577|                {
  1102|    577|                    ConsumeCurrentCharacter();
  1103|    577|                    continue;
  1104|    577|                }
  1105|       |                // Literal dot
- 1106|  1.69k|                else if (current_character == '.')
+ 1106|  1.70k|                else if (current_character == '.')
   ------------------
-  |  Branch (1106:26): [True: 522, False: 1.16k]
+  |  Branch (1106:26): [True: 526, False: 1.18k]
   ------------------
- 1107|    522|                {
- 1108|    522|                    if (parsing_float)
+ 1107|    526|                {
+ 1108|    526|                    if (parsing_float)
   ------------------
-  |  Branch (1108:25): [True: 328, False: 194]
+  |  Branch (1108:25): [True: 332, False: 194]
   ------------------
- 1109|    328|                    {
+ 1109|    332|                    {
  1110|       |                        //Diag().Error(DiagnosticId::InvalidFloatLiteral, CurrentSourceLocation());
  1111|       |
- 1112|    328|                        return ConstructToken(TokenKind::Garbage, begin_of_token);
- 1113|    328|                    }
+ 1112|    332|                        return ConstructToken(TokenKind::Garbage, begin_of_token);
+ 1113|    332|                    }
  1114|       |
  1115|    194|                    parsing_float = true;
  1116|    194|                    ConsumeCurrentCharacter();
  1117|    194|                    continue;
- 1118|    522|                }
+ 1118|    526|                }
  1119|       |
- 1120|  1.72k|                break;
- 1121|  3.57k|            }
+ 1120|  1.73k|                break;
+ 1121|  3.59k|            }
  1122|       |
- 1123|  1.79k|            if (parsing_float)
+ 1123|  1.80k|            if (parsing_float)
   ------------------
-  |  Branch (1123:17): [True: 865, False: 931]
+  |  Branch (1123:17): [True: 872, False: 936]
   ------------------
- 1124|    865|            {
+ 1124|    872|            {
  1125|       |                // Were not allowed to end with a dot
  1126|       |                // TODO: This is very hacky and looks nasty
- 1127|    865|                if (*(m_Iterator - 1) == '.')
+ 1127|    872|                if (*(m_Iterator - 1) == '.')
   ------------------
-  |  Branch (1127:21): [True: 671, False: 194]
+  |  Branch (1127:21): [True: 678, False: 194]
   ------------------
- 1128|    671|                {
+ 1128|    678|                {
  1129|       |                    //Diag().Error(DiagnosticId::InvalidFloatLiteral, CurrentSourceLocation());
  1130|       |
- 1131|    671|                    return ConstructToken(TokenKind::Garbage, begin_of_token);
- 1132|    671|                }
+ 1131|    678|                    return ConstructToken(TokenKind::Garbage, begin_of_token);
+ 1132|    678|                }
  1133|       |
  1134|    194|                return ConstructToken(TokenKind::FloatLiteral, begin_of_token);
- 1135|    865|            }
+ 1135|    872|            }
  1136|       |
- 1137|    931|            return ConstructToken(TokenKind::IntegerLiteral, begin_of_token);
- 1138|  1.79k|        }
+ 1137|    936|            return ConstructToken(TokenKind::IntegerLiteral, begin_of_token);
+ 1138|  1.80k|        }
  1139|       |
  1140|       |        /* Operators */
  1141|       |
- 1142|  9.46k|        else if (is_two_part_operator(current_character))
+ 1142|  9.74k|        else if (is_two_part_operator(current_character))
   ------------------
-  |  Branch (1142:18): [True: 2.35k, False: 7.11k]
+  |  Branch (1142:18): [True: 2.35k, False: 7.39k]
   ------------------
  1143|  2.35k|        {
  1144|  2.35k|            iterator begin_of_token = m_Iterator;
@@ -1203,13 +1203,13 @@ _ZN10OpenAutoIt5Lexer12GetNextTokenEv:
  1146|       |
  1147|  2.35k|            if (!IsFinished())
   ------------------
-  |  Branch (1147:17): [True: 2.27k, False: 72]
+  |  Branch (1147:17): [True: 2.27k, False: 79]
   ------------------
  1148|  2.27k|            {
  1149|  2.27k|                if (*m_Iterator == '=' || (*begin_of_token == '<' && *m_Iterator == '>'))
   ------------------
-  |  Branch (1149:21): [True: 196, False: 2.08k]
-  |  Branch (1149:44): [True: 412, False: 1.67k]
+  |  Branch (1149:21): [True: 196, False: 2.07k]
+  |  Branch (1149:44): [True: 412, False: 1.66k]
   |  Branch (1149:70): [True: 194, False: 218]
   ------------------
  1150|    390|                {
@@ -1221,35 +1221,35 @@ _ZN10OpenAutoIt5Lexer12GetNextTokenEv:
  1156|  2.35k|            return ConstructToken(lookup_operator(TokenText(begin_of_token)), begin_of_token);
  1157|  2.35k|        }
  1158|       |
- 1159|  7.11k|        else if (is_single_operator(current_character))
+ 1159|  7.39k|        else if (is_single_operator(current_character))
   ------------------
-  |  Branch (1159:18): [True: 843, False: 6.26k]
+  |  Branch (1159:18): [True: 842, False: 6.55k]
   ------------------
- 1160|    843|        {
- 1161|    843|            Token token = ConstructToken(lookup_operator({m_Iterator, 1u}));
+ 1160|    842|        {
+ 1161|    842|            Token token = ConstructToken(lookup_operator({m_Iterator, 1u}));
  1162|       |
- 1163|    843|            ConsumeCurrentCharacter();
+ 1163|    842|            ConsumeCurrentCharacter();
  1164|       |
- 1165|    843|            return token;
- 1166|    843|        }
+ 1165|    842|            return token;
+ 1166|    842|        }
  1167|       |
  1168|       |        /* Punctioation */
  1169|       |
- 1170|  6.26k|        else if (current_character == ',')
+ 1170|  6.55k|        else if (current_character == ',')
   ------------------
-  |  Branch (1170:18): [True: 260, False: 6.00k]
+  |  Branch (1170:18): [True: 268, False: 6.28k]
   ------------------
- 1171|    260|        {
- 1172|    260|            Token token = ConstructToken(TokenKind::Comma);
+ 1171|    268|        {
+ 1172|    268|            Token token = ConstructToken(TokenKind::Comma);
  1173|       |
- 1174|    260|            ConsumeCurrentCharacter();
+ 1174|    268|            ConsumeCurrentCharacter();
  1175|       |
- 1176|    260|            return token;
- 1177|    260|        }
+ 1176|    268|            return token;
+ 1177|    268|        }
  1178|       |
- 1179|  6.00k|        else if (current_character == '(')
+ 1179|  6.28k|        else if (current_character == '(')
   ------------------
-  |  Branch (1179:18): [True: 241, False: 5.76k]
+  |  Branch (1179:18): [True: 241, False: 6.04k]
   ------------------
  1180|    241|        {
  1181|    241|            Token token = ConstructToken(TokenKind::LParen);
@@ -1259,9 +1259,9 @@ _ZN10OpenAutoIt5Lexer12GetNextTokenEv:
  1185|    241|            return token;
  1186|    241|        }
  1187|       |
- 1188|  5.76k|        else if (current_character == ')')
+ 1188|  6.04k|        else if (current_character == ')')
   ------------------
-  |  Branch (1188:18): [True: 236, False: 5.53k]
+  |  Branch (1188:18): [True: 236, False: 5.81k]
   ------------------
  1189|    236|        {
  1190|    236|            Token token = ConstructToken(TokenKind::RParen);
@@ -1271,9 +1271,9 @@ _ZN10OpenAutoIt5Lexer12GetNextTokenEv:
  1194|    236|            return token;
  1195|    236|        }
  1196|       |
- 1197|  5.53k|        else if (current_character == '.')
+ 1197|  5.81k|        else if (current_character == '.')
   ------------------
-  |  Branch (1197:18): [True: 0, False: 5.53k]
+  |  Branch (1197:18): [True: 0, False: 5.81k]
   ------------------
  1198|      0|        {
  1199|      0|            Token token = ConstructToken(TokenKind::Dot);
@@ -1283,21 +1283,21 @@ _ZN10OpenAutoIt5Lexer12GetNextTokenEv:
  1203|      0|            return token;
  1204|      0|        }
  1205|       |
- 1206|  5.53k|        else if (current_character == '[')
+ 1206|  5.81k|        else if (current_character == '[')
   ------------------
-  |  Branch (1206:18): [True: 361, False: 5.17k]
+  |  Branch (1206:18): [True: 369, False: 5.44k]
   ------------------
- 1207|    361|        {
- 1208|    361|            Token token = ConstructToken(TokenKind::LSquare);
+ 1207|    369|        {
+ 1208|    369|            Token token = ConstructToken(TokenKind::LSquare);
  1209|       |
- 1210|    361|            ConsumeCurrentCharacter();
+ 1210|    369|            ConsumeCurrentCharacter();
  1211|       |
- 1212|    361|            return token;
- 1213|    361|        }
+ 1212|    369|            return token;
+ 1213|    369|        }
  1214|       |
- 1215|  5.17k|        else if (current_character == ']')
+ 1215|  5.44k|        else if (current_character == ']')
   ------------------
-  |  Branch (1215:18): [True: 313, False: 4.85k]
+  |  Branch (1215:18): [True: 313, False: 5.12k]
   ------------------
  1216|    313|        {
  1217|    313|            Token token = ConstructToken(TokenKind::RSquare);
@@ -1309,166 +1309,166 @@ _ZN10OpenAutoIt5Lexer12GetNextTokenEv:
  1223|       |
  1224|       |        /* Identifier */
  1225|       |
- 1226|  4.85k|        else if (is_valid_identifier_char(current_character))
+ 1226|  5.12k|        else if (is_valid_identifier_char(current_character))
   ------------------
-  |  Branch (1226:18): [True: 2.11k, False: 2.74k]
+  |  Branch (1226:18): [True: 2.27k, False: 2.85k]
   ------------------
- 1227|  2.11k|        {
- 1228|  2.11k|            iterator begin_of_token = m_Iterator;
- 1229|  2.11k|            ConsumeCurrentCharacter();
+ 1227|  2.27k|        {
+ 1228|  2.27k|            iterator begin_of_token = m_Iterator;
+ 1229|  2.27k|            ConsumeCurrentCharacter();
  1230|       |
- 1231|  40.0k|            while (!IsFinished())
+ 1231|  42.6k|            while (!IsFinished())
   ------------------
-  |  Branch (1231:20): [True: 39.8k, False: 184]
+  |  Branch (1231:20): [True: 42.4k, False: 206]
   ------------------
- 1232|  39.8k|            {
- 1233|  39.8k|                current_character = *m_Iterator;
+ 1232|  42.4k|            {
+ 1233|  42.4k|                current_character = *m_Iterator;
  1234|       |
- 1235|  39.8k|                if (is_valid_identifier_char(current_character))
+ 1235|  42.4k|                if (is_valid_identifier_char(current_character))
   ------------------
-  |  Branch (1235:21): [True: 37.9k, False: 1.92k]
+  |  Branch (1235:21): [True: 40.3k, False: 2.06k]
   ------------------
- 1236|  37.9k|                {
- 1237|  37.9k|                    ConsumeCurrentCharacter();
- 1238|  37.9k|                    continue;
- 1239|  37.9k|                }
+ 1236|  40.3k|                {
+ 1237|  40.3k|                    ConsumeCurrentCharacter();
+ 1238|  40.3k|                    continue;
+ 1239|  40.3k|                }
  1240|       |
- 1241|  1.92k|                break;
- 1242|  39.8k|            }
+ 1241|  2.06k|                break;
+ 1242|  42.4k|            }
  1243|       |
- 1244|  2.11k|            return ConstructToken(lookup_identifier(TokenText(begin_of_token)), begin_of_token);
- 1245|  2.11k|        }
+ 1244|  2.27k|            return ConstructToken(lookup_identifier(TokenText(begin_of_token)), begin_of_token);
+ 1245|  2.27k|        }
  1246|       |
  1247|       |        /* Unknown/Unexpected character */
  1248|       |
- 1249|  2.74k|        else
- 1250|  2.74k|        {
+ 1249|  2.85k|        else
+ 1250|  2.85k|        {
  1251|       |            // TODO: Warn unexpected character encountered
- 1252|  2.74k|            SkipCurrentCharacter();
- 1253|  2.74k|        }
- 1254|  41.2k|    }
+ 1252|  2.85k|            SkipCurrentCharacter();
+ 1253|  2.85k|        }
+ 1254|  34.3k|    }
  1255|       |
- 1256|    271|    return {};
- 1257|  35.3k|}
+ 1256|    247|    return {};
+ 1257|  27.6k|}
 _ZN10OpenAutoIt5Lexer13ProcessStringEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEES6_:
- 1260|  1.29k|{
- 1261|  1.29k|    SourceFile fake_source{SourceFile::Type::Basic, file_name.data(), source};
+ 1260|  1.24k|{
+ 1261|  1.24k|    SourceFile fake_source{SourceFile::Type::Basic, file_name.data(), source};
  1262|       |
- 1263|  1.29k|    return ProcessFile(&fake_source);
- 1264|  1.29k|}
+ 1263|  1.24k|    return ProcessFile(&fake_source);
+ 1264|  1.24k|}
 _ZN10OpenAutoIt5Lexer11ProcessFileEN3phi21not_null_observer_ptrIKNS_10SourceFileEEE:
- 1267|  1.29k|{
- 1268|  1.29k|    TokenStream stream;
+ 1267|  1.24k|{
+ 1268|  1.24k|    TokenStream stream;
  1269|       |
- 1270|  1.29k|    m_SourceFile = source_file;
- 1271|  1.29k|    m_Source     = m_SourceFile->m_Content;
- 1272|  1.29k|    Reset();
+ 1270|  1.24k|    m_SourceFile = source_file;
+ 1271|  1.24k|    m_Source     = m_SourceFile->m_Content;
+ 1272|  1.24k|    Reset();
  1273|       |
- 1274|  36.5k|    while (!IsFinished())
+ 1274|  28.8k|    while (!IsFinished())
   ------------------
-  |  Branch (1274:12): [True: 35.3k, False: 1.29k]
+  |  Branch (1274:12): [True: 27.6k, False: 1.24k]
   ------------------
- 1275|  35.3k|    {
- 1276|  35.3k|        phi::optional<Token> maybe_token = GetNextToken();
+ 1275|  27.6k|    {
+ 1276|  27.6k|        phi::optional<Token> maybe_token = GetNextToken();
  1277|       |
- 1278|  35.3k|        if (maybe_token.has_value())
+ 1278|  27.6k|        if (maybe_token.has_value())
   ------------------
-  |  Branch (1278:13): [True: 35.0k, False: 271]
+  |  Branch (1278:13): [True: 27.4k, False: 247]
   ------------------
- 1279|  35.0k|        {
- 1280|  35.0k|            stream.emplace_back(maybe_token.value());
- 1281|  35.0k|        }
- 1282|  35.3k|    }
+ 1279|  27.4k|        {
+ 1280|  27.4k|            stream.emplace_back(maybe_token.value());
+ 1281|  27.4k|        }
+ 1282|  27.6k|    }
  1283|       |
- 1284|  1.29k|    stream.finalize();
- 1285|  1.29k|    return stream;
- 1286|  1.29k|}
+ 1284|  1.24k|    stream.finalize();
+ 1285|  1.24k|    return stream;
+ 1286|  1.24k|}
 _ZN10OpenAutoIt5Lexer23ConsumeCurrentCharacterEv:
- 1289|   237k|{
- 1290|   237k|    ++m_Iterator;
- 1291|   237k|}
+ 1289|   212k|{
+ 1290|   212k|    ++m_Iterator;
+ 1291|   212k|}
 _ZN10OpenAutoIt5Lexer17AdvanceToNextLineEv:
- 1294|    884|{
- 1295|    884|    ++m_LineNumber;
- 1296|    884|    m_Column = 1u;
- 1297|    884|}
+ 1294|    869|{
+ 1295|    869|    ++m_LineNumber;
+ 1296|    869|    m_Column = 1u;
+ 1297|    869|}
 _ZN10OpenAutoIt5Lexer20SkipCurrentCharacterEv:
- 1300|  6.05k|{
- 1301|  6.05k|    ConsumeCurrentCharacter();
- 1302|  6.05k|    ++m_Column;
- 1303|  6.05k|}
+ 1300|  6.87k|{
+ 1301|  6.87k|    ConsumeCurrentCharacter();
+ 1302|  6.87k|    ++m_Column;
+ 1303|  6.87k|}
 _ZN10OpenAutoIt5Lexer4DiagEv:
- 1306|  2.18k|{
- 1307|  2.18k|    return DiagnosticBuilder{m_DiagnosticEngine};
- 1308|  2.18k|}
+ 1306|  2.83k|{
+ 1307|  2.83k|    return DiagnosticBuilder{m_DiagnosticEngine};
+ 1308|  2.83k|}
 _ZNK9LookUpMapIN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEEN10OpenAutoIt9TokenKindELm102EE2atERKS5_:
-   37|  1.65k|    {
-   38|  1.65k|        const auto itr = std::find_if(begin(m_Data), end(m_Data),
-   39|  1.65k|                                      [&key](const auto& v) { return v.first == key; });
+   37|  1.82k|    {
+   38|  1.82k|        const auto itr = std::find_if(begin(m_Data), end(m_Data),
+   39|  1.82k|                                      [&key](const auto& v) { return v.first == key; });
    40|       |
-   41|  1.65k|        if (itr != end(m_Data))
+   41|  1.82k|        if (itr != end(m_Data))
   ------------------
-  |  Branch (41:13): [True: 214, False: 1.44k]
+  |  Branch (41:13): [True: 214, False: 1.61k]
   ------------------
    42|    214|        {
    43|    214|            return itr->second;
    44|    214|        }
    45|       |
-   46|  1.44k|        return m_Default;
-   47|  1.65k|    }
+   46|  1.61k|        return m_Default;
+   47|  1.82k|    }
 _ZZNK9LookUpMapIN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEEN10OpenAutoIt9TokenKindELm102EE2atERKS5_ENKUlRKT_E_clINS2_4pairIS5_S7_EEEEDaSD_:
-   39|   156k|                                      [&key](const auto& v) { return v.first == key; });
+   39|   173k|                                      [&key](const auto& v) { return v.first == key; });
 _ZNK9LookUpMapIN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEEN10OpenAutoIt9TokenKindELm10EE2atERKS5_:
-   37|  26.2k|    {
-   38|  26.2k|        const auto itr = std::find_if(begin(m_Data), end(m_Data),
-   39|  26.2k|                                      [&key](const auto& v) { return v.first == key; });
+   37|  16.9k|    {
+   38|  16.9k|        const auto itr = std::find_if(begin(m_Data), end(m_Data),
+   39|  16.9k|                                      [&key](const auto& v) { return v.first == key; });
    40|       |
-   41|  26.2k|        if (itr != end(m_Data))
+   41|  16.9k|        if (itr != end(m_Data))
   ------------------
-  |  Branch (41:13): [True: 18.2k, False: 7.92k]
+  |  Branch (41:13): [True: 10.3k, False: 6.52k]
   ------------------
-   42|  18.2k|        {
-   43|  18.2k|            return itr->second;
-   44|  18.2k|        }
+   42|  10.3k|        {
+   43|  10.3k|            return itr->second;
+   44|  10.3k|        }
    45|       |
-   46|  7.92k|        return m_Default;
-   47|  26.2k|    }
+   46|  6.52k|        return m_Default;
+   47|  16.9k|    }
 _ZZNK9LookUpMapIN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEEN10OpenAutoIt9TokenKindELm10EE2atERKS5_ENKUlRKT_E_clINS2_4pairIS5_S7_EEEEDaSD_:
-   39|   149k|                                      [&key](const auto& v) { return v.first == key; });
+   39|   106k|                                      [&key](const auto& v) { return v.first == key; });
 _ZNK9LookUpMapIN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEEN10OpenAutoIt9TokenKindELm404EE2atERKS5_:
-   37|  1.91k|    {
-   38|  1.91k|        const auto itr = std::find_if(begin(m_Data), end(m_Data),
-   39|  1.91k|                                      [&key](const auto& v) { return v.first == key; });
+   37|  2.07k|    {
+   38|  2.07k|        const auto itr = std::find_if(begin(m_Data), end(m_Data),
+   39|  2.07k|                                      [&key](const auto& v) { return v.first == key; });
    40|       |
-   41|  1.91k|        if (itr != end(m_Data))
+   41|  2.07k|        if (itr != end(m_Data))
   ------------------
-  |  Branch (41:13): [True: 208, False: 1.70k]
+  |  Branch (41:13): [True: 208, False: 1.86k]
   ------------------
    42|    208|        {
    43|    208|            return itr->second;
    44|    208|        }
    45|       |
-   46|  1.70k|        return m_Default;
-   47|  1.91k|    }
+   46|  1.86k|        return m_Default;
+   47|  2.07k|    }
 _ZZNK9LookUpMapIN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEEN10OpenAutoIt9TokenKindELm404EE2atERKS5_ENKUlRKT_E_clINS2_4pairIS5_S7_EEEEDaSD_:
-   39|   749k|                                      [&key](const auto& v) { return v.first == key; });
+   39|   815k|                                      [&key](const auto& v) { return v.first == key; });
 _ZNK9LookUpMapIN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEEN10OpenAutoIt9TokenKindELm44EE2atERKS5_:
-   37|  2.11k|    {
-   38|  2.11k|        const auto itr = std::find_if(begin(m_Data), end(m_Data),
-   39|  2.11k|                                      [&key](const auto& v) { return v.first == key; });
+   37|  2.27k|    {
+   38|  2.27k|        const auto itr = std::find_if(begin(m_Data), end(m_Data),
+   39|  2.27k|                                      [&key](const auto& v) { return v.first == key; });
    40|       |
-   41|  2.11k|        if (itr != end(m_Data))
+   41|  2.27k|        if (itr != end(m_Data))
   ------------------
-  |  Branch (41:13): [True: 199, False: 1.91k]
+  |  Branch (41:13): [True: 199, False: 2.07k]
   ------------------
    42|    199|        {
    43|    199|            return itr->second;
    44|    199|        }
    45|       |
-   46|  1.91k|        return m_Default;
-   47|  2.11k|    }
+   46|  2.07k|        return m_Default;
+   47|  2.27k|    }
 _ZZNK9LookUpMapIN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEEN10OpenAutoIt9TokenKindELm44EE2atERKS5_ENKUlRKT_E_clINS2_4pairIS5_S7_EEEEDaSD_:
-   39|  86.2k|                                      [&key](const auto& v) { return v.first == key; });
+   39|  93.5k|                                      [&key](const auto& v) { return v.first == key; });
 _ZNK9LookUpMapIN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEEN10OpenAutoIt9TokenKindELm20EE2atERKS5_:
    37|  3.19k|    {
    38|  3.19k|        const auto itr = std::find_if(begin(m_Data), end(m_Data),
@@ -1485,143 +1485,143 @@ _ZNK9LookUpMapIN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEEN10OpenAutoIt
    46|      0|        return m_Default;
    47|  3.19k|    }
 _ZZNK9LookUpMapIN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEEN10OpenAutoIt9TokenKindELm20EE2atERKS5_ENKUlRKT_E_clINS2_4pairIS5_S7_EEEEDaSD_:
-   39|  39.5k|                                      [&key](const auto& v) { return v.first == key; });
+   39|  39.4k|                                      [&key](const auto& v) { return v.first == key; });
 _Z16is_valid_pp_charc:
-  736|   141k|{
-  737|   141k|    return phi::is_alpha_numeric(c) || c == '-';
+  736|   109k|{
+  737|   109k|    return phi::is_alpha_numeric(c) || c == '-';
   ------------------
-  |  Branch (737:12): [True: 114k, False: 26.6k]
-  |  Branch (737:40): [True: 979, False: 25.6k]
+  |  Branch (737:12): [True: 92.1k, False: 17.2k]
+  |  Branch (737:40): [True: 751, False: 16.4k]
   ------------------
-  738|   141k|}
+  738|   109k|}
 _Z17is_skip_characterc:
-  716|  34.7k|{
-  717|  34.7k|    switch (c)
-  718|  34.7k|    {
+  716|  29.0k|{
+  717|  29.0k|    switch (c)
+  718|  29.0k|    {
   719|    201|        case ' ':
   ------------------
-  |  Branch (719:9): [True: 201, False: 34.5k]
+  |  Branch (719:9): [True: 201, False: 28.8k]
   ------------------
-  720|    403|        case '\v':
+  720|    400|        case '\v':
   ------------------
-  |  Branch (720:9): [True: 202, False: 34.5k]
+  |  Branch (720:9): [True: 199, False: 28.8k]
   ------------------
-  721|    692|        case '\t':
+  721|    689|        case '\t':
   ------------------
-  |  Branch (721:9): [True: 289, False: 34.4k]
+  |  Branch (721:9): [True: 289, False: 28.7k]
   ------------------
-  722|    919|        case '\b':
+  722|    981|        case '\b':
   ------------------
-  |  Branch (722:9): [True: 227, False: 34.5k]
+  |  Branch (722:9): [True: 292, False: 28.7k]
   ------------------
-  723|  1.12k|        case '\f':
+  723|  1.18k|        case '\f':
   ------------------
-  |  Branch (723:9): [True: 202, False: 34.5k]
+  |  Branch (723:9): [True: 202, False: 28.8k]
   ------------------
-  724|  1.12k|            return true;
-  725|  33.6k|        default:
+  724|  1.18k|            return true;
+  725|  27.8k|        default:
   ------------------
-  |  Branch (725:9): [True: 33.6k, False: 1.12k]
+  |  Branch (725:9): [True: 27.8k, False: 1.18k]
   ------------------
-  726|  33.6k|            return false;
-  727|  34.7k|    }
-  728|  34.7k|}
+  726|  27.8k|            return false;
+  727|  29.0k|    }
+  728|  29.0k|}
 _Z24is_valid_identifier_charc:
-  731|  82.3k|{
-  732|  82.3k|    return phi::is_alpha_numeric(c) || c == '_';
+  731|  88.1k|{
+  732|  88.1k|    return phi::is_alpha_numeric(c) || c == '_';
   ------------------
-  |  Branch (732:12): [True: 75.4k, False: 6.86k]
-  |  Branch (732:40): [True: 230, False: 6.63k]
+  |  Branch (732:12): [True: 80.8k, False: 7.27k]
+  |  Branch (732:40): [True: 230, False: 7.04k]
   ------------------
-  733|  82.3k|}
+  733|  88.1k|}
 _Z20is_two_part_operatorc:
-  741|  9.46k|{
-  742|  9.46k|    switch (c)
-  743|  9.46k|    {
+  741|  9.74k|{
+  742|  9.74k|    switch (c)
+  743|  9.74k|    {
   744|    228|        case '=':
   ------------------
-  |  Branch (744:9): [True: 228, False: 9.23k]
+  |  Branch (744:9): [True: 228, False: 9.52k]
   ------------------
-  745|    461|        case '+':
+  745|    462|        case '+':
   ------------------
-  |  Branch (745:9): [True: 233, False: 9.22k]
+  |  Branch (745:9): [True: 234, False: 9.51k]
   ------------------
-  746|    680|        case '-':
+  746|    681|        case '-':
   ------------------
-  |  Branch (746:9): [True: 219, False: 9.24k]
+  |  Branch (746:9): [True: 219, False: 9.53k]
   ------------------
-  747|    978|        case '*':
+  747|    979|        case '*':
   ------------------
-  |  Branch (747:9): [True: 298, False: 9.16k]
+  |  Branch (747:9): [True: 298, False: 9.45k]
   ------------------
-  748|  1.45k|        case '/':
+  748|  1.46k|        case '/':
   ------------------
-  |  Branch (748:9): [True: 481, False: 8.98k]
+  |  Branch (748:9): [True: 481, False: 9.26k]
   ------------------
   749|  1.73k|        case '&':
   ------------------
-  |  Branch (749:9): [True: 275, False: 9.18k]
+  |  Branch (749:9): [True: 275, False: 9.47k]
   ------------------
   750|  2.15k|        case '<':
   ------------------
-  |  Branch (750:9): [True: 421, False: 9.04k]
+  |  Branch (750:9): [True: 421, False: 9.32k]
   ------------------
   751|  2.35k|        case '>':
   ------------------
-  |  Branch (751:9): [True: 195, False: 9.26k]
+  |  Branch (751:9): [True: 195, False: 9.55k]
   ------------------
   752|  2.35k|            return true;
   753|       |
-  754|  7.11k|        default:
+  754|  7.39k|        default:
   ------------------
-  |  Branch (754:9): [True: 7.11k, False: 2.35k]
+  |  Branch (754:9): [True: 7.39k, False: 2.35k]
   ------------------
-  755|  7.11k|            return false;
-  756|  9.46k|    }
-  757|  9.46k|}
+  755|  7.39k|            return false;
+  756|  9.74k|    }
+  757|  9.74k|}
 _Z18is_single_operatorc:
-  760|  7.11k|{
-  761|  7.11k|    switch (c)
-  762|  7.11k|    {
+  760|  7.39k|{
+  761|  7.39k|    switch (c)
+  762|  7.39k|    {
   763|    354|        case '^':
   ------------------
-  |  Branch (763:9): [True: 354, False: 6.75k]
+  |  Branch (763:9): [True: 354, False: 7.04k]
   ------------------
-  764|    608|        case '?':
+  764|    607|        case '?':
   ------------------
-  |  Branch (764:9): [True: 254, False: 6.85k]
+  |  Branch (764:9): [True: 253, False: 7.14k]
   ------------------
-  765|    843|        case ':':
+  765|    842|        case ':':
   ------------------
-  |  Branch (765:9): [True: 235, False: 6.87k]
+  |  Branch (765:9): [True: 235, False: 7.16k]
   ------------------
-  766|    843|            return true;
+  766|    842|            return true;
   767|       |
-  768|  6.26k|        default:
+  768|  6.55k|        default:
   ------------------
-  |  Branch (768:9): [True: 6.26k, False: 843]
+  |  Branch (768:9): [True: 6.55k, False: 842]
   ------------------
-  769|  6.26k|            return false;
-  770|  7.11k|    }
-  771|  7.11k|}
+  769|  6.55k|            return false;
+  770|  7.39k|    }
+  771|  7.39k|}
 
 _ZN10OpenAutoIt10SourceFileC2ENS0_4TypeENSt3__14__fs10filesystem4pathEN3phi17basic_string_viewIcNS2_11char_traitsIcEEEE:
-   12|  1.29k|{}
+   12|  1.24k|{}
 
 _ZN10OpenAutoIt11TokenStream8finalizeEv:
-   30|  1.29k|{
+   30|  1.24k|{
    31|       |#if defined(PHI_DEBUG)
    32|       |    PHI_ASSERT(!m_Finalized);
    33|       |#endif
    34|       |
-   35|  1.29k|    m_Index = 0u;
+   35|  1.24k|    m_Index = 0u;
    36|       |#if defined(PHI_DEBUG)
    37|       |    m_Finalized = true;
    38|       |#endif
-   39|  1.29k|}
+   39|  1.24k|}
 
 _ZN10OpenAutoIt14disable_outputEv:
-  107|  1.29k|{
-  108|  1.29k|    output_enabled = false;
-  109|  1.29k|}
+  107|  1.24k|{
+  108|  1.24k|    output_enabled = false;
+  109|  1.24k|}
 
