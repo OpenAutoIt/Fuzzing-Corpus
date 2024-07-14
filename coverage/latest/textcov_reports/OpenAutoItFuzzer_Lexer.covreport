@@ -704,9 +704,9 @@ _ZN10OpenAutoIt5Lexer5ResetEv:
   787|  6.95k|    m_Column     = 1u;
   788|  6.95k|}
 _ZNK10OpenAutoIt5Lexer10IsFinishedEv:
-  791|  4.99M|{
-  792|  4.99M|    return m_Iterator == m_Source.end();
-  793|  4.99M|}
+  791|  5.00M|{
+  792|  5.00M|    return m_Iterator == m_Source.end();
+  793|  5.00M|}
 _ZN10OpenAutoIt5Lexer12GetNextTokenEv:
   796|   980k|{
   797|  1.58M|    while (!IsFinished())
@@ -840,7 +840,7 @@ _ZN10OpenAutoIt5Lexer12GetNextTokenEv:
   892|       |
   893|  1.52M|        else if (current_character == ';')
   ------------------
-  |  Branch (893:18): [True: 441, False: 1.51M]
+  |  Branch (893:18): [True: 441, False: 1.52M]
   ------------------
   894|    441|        {
   895|    441|            iterator begin_of_token = m_Iterator;
@@ -870,7 +870,7 @@ _ZN10OpenAutoIt5Lexer12GetNextTokenEv:
   913|       |
   914|       |        /* Macros */
   915|       |
-  916|  1.51M|        else if (current_character == '@')
+  916|  1.52M|        else if (current_character == '@')
   ------------------
   |  Branch (916:18): [True: 10.3k, False: 1.50M]
   ------------------
@@ -1111,7 +1111,7 @@ _ZN10OpenAutoIt5Lexer12GetNextTokenEv:
  1081|   435k|                }
  1082|       |
  1083|       |                // Actually parsing
- 1084|   774k|                if (parsing_hex)
+ 1084|   775k|                if (parsing_hex)
   ------------------
   |  Branch (1084:21): [True: 447k, False: 327k]
   ------------------
@@ -1166,7 +1166,7 @@ _ZN10OpenAutoIt5Lexer12GetNextTokenEv:
  1118|   119k|                }
  1119|       |
  1120|   493k|                break;
- 1121|   774k|            }
+ 1121|   775k|            }
  1122|       |
  1123|   494k|            if (parsing_float)
   ------------------
@@ -1203,12 +1203,12 @@ _ZN10OpenAutoIt5Lexer12GetNextTokenEv:
  1146|       |
  1147|  37.8k|            if (!IsFinished())
   ------------------
-  |  Branch (1147:17): [True: 37.6k, False: 108]
+  |  Branch (1147:17): [True: 37.7k, False: 108]
   ------------------
- 1148|  37.6k|            {
- 1149|  37.6k|                if (*m_Iterator == '=' || (*begin_of_token == '<' && *m_Iterator == '>'))
+ 1148|  37.7k|            {
+ 1149|  37.7k|                if (*m_Iterator == '=' || (*begin_of_token == '<' && *m_Iterator == '>'))
   ------------------
-  |  Branch (1149:21): [True: 498, False: 37.1k]
+  |  Branch (1149:21): [True: 498, False: 37.2k]
   |  Branch (1149:44): [True: 2.49k, False: 34.7k]
   |  Branch (1149:70): [True: 355, False: 2.13k]
   ------------------
@@ -1216,7 +1216,7 @@ _ZN10OpenAutoIt5Lexer12GetNextTokenEv:
  1151|       |                    // We have an actual two part operator
  1152|    853|                    ConsumeCurrentCharacter();
  1153|    853|                }
- 1154|  37.6k|            }
+ 1154|  37.7k|            }
  1155|       |
  1156|  37.8k|            return ConstructToken(lookup_operator(TokenText(begin_of_token)), begin_of_token);
  1157|  37.8k|        }
@@ -1297,7 +1297,7 @@ _ZN10OpenAutoIt5Lexer12GetNextTokenEv:
  1214|       |
  1215|   681k|        else if (current_character == ']')
   ------------------
-  |  Branch (1215:18): [True: 5.62k, False: 675k]
+  |  Branch (1215:18): [True: 5.62k, False: 676k]
   ------------------
  1216|  5.62k|        {
  1217|  5.62k|            Token token = ConstructToken(TokenKind::RSquare);
@@ -1309,7 +1309,7 @@ _ZN10OpenAutoIt5Lexer12GetNextTokenEv:
  1223|       |
  1224|       |        /* Identifier */
  1225|       |
- 1226|   675k|        else if (is_valid_identifier_char(current_character))
+ 1226|   676k|        else if (is_valid_identifier_char(current_character))
   ------------------
   |  Branch (1226:18): [True: 129k, False: 546k]
   ------------------
@@ -1548,7 +1548,7 @@ _Z20is_two_part_operatorc:
   ------------------
   746|  9.96k|        case '-':
   ------------------
-  |  Branch (746:9): [True: 5.48k, False: 778k]
+  |  Branch (746:9): [True: 5.48k, False: 779k]
   ------------------
   747|  19.7k|        case '*':
   ------------------
@@ -1564,7 +1564,7 @@ _Z20is_two_part_operatorc:
   ------------------
   750|  35.0k|        case '<':
   ------------------
-  |  Branch (750:9): [True: 2.50k, False: 781k]
+  |  Branch (750:9): [True: 2.50k, False: 782k]
   ------------------
   751|  37.8k|        case '>':
   ------------------
@@ -1585,7 +1585,7 @@ _Z18is_single_operatorc:
   762|   746k|    {
   763|  1.77k|        case '^':
   ------------------
-  |  Branch (763:9): [True: 1.77k, False: 744k]
+  |  Branch (763:9): [True: 1.77k, False: 745k]
   ------------------
   764|  11.9k|        case '?':
   ------------------
@@ -1593,7 +1593,7 @@ _Z18is_single_operatorc:
   ------------------
   765|  12.6k|        case ':':
   ------------------
-  |  Branch (765:9): [True: 706, False: 745k]
+  |  Branch (765:9): [True: 706, False: 746k]
   ------------------
   766|  12.6k|            return true;
   767|       |
